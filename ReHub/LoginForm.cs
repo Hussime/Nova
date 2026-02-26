@@ -105,11 +105,11 @@ namespace ReHub
 
                     switch (user.Role)
                     {
-                        case "Студент":
-                            new StudentForm(user).Show();
-                            break;
                         case "Преподаватель":
                             new TeacherForm(user).Show();
+                            break;
+                        case "Студент":
+                            new StudentForm(user).Show();
                             break;
                         case "Администратор":
                             new AdminForm(user).Show();
