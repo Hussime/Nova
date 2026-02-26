@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Hussime\\Desktop\\ReHub\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|C:\\Users\\Hussime\\Desktop\\ReHub\\rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|solutionrelative:rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|c:\\users\\hussime\\desktop\\rehub\\rehub\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|solutionrelative:rehub\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,12 +23,8 @@
       "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|solutionrelative:rehub\\teacherform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|c:\\users\\hussime\\desktop\\rehub\\rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|C:\\Users\\Hussime\\Desktop\\ReHub\\rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|solutionrelative:rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|c:\\users\\hussime\\desktop\\rehub\\rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|solutionrelative:rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,7 +44,7 @@
         },
         {
           "DockedHeight": 86,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -56,7 +56,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DatabaseHelper.cs",
               "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "ReHub\\DatabaseHelper.cs",
@@ -69,20 +69,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "LoginForm.cs",
               "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\LoginForm.cs",
               "RelativeDocumentMoniker": "ReHub\\LoginForm.cs",
               "ToolTip": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\LoginForm.cs",
               "RelativeToolTip": "ReHub\\LoginForm.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAuwDQAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAwwGwAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-25T08:06:00.995Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "LoginForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\LoginForm.cs",
               "RelativeDocumentMoniker": "ReHub\\LoginForm.cs",
@@ -94,7 +94,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "TeacherForm.cs",
               "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\TeacherForm.cs",
               "RelativeDocumentMoniker": "ReHub\\TeacherForm.cs",
@@ -102,24 +102,22 @@
               "RelativeToolTip": "ReHub\\TeacherForm.cs",
               "ViewState": "AgIAAB4BAAAAAAAAAAAYwDYAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T10:57:46.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-08T10:57:46.018Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TeacherForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\TeacherForm.cs",
               "RelativeDocumentMoniker": "ReHub\\TeacherForm.cs",
               "ToolTip": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\TeacherForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "ReHub\\TeacherForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T02:26:12.444Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2025-11-09T02:26:12.444Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AdminForm.cs",
               "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\AdminForm.cs",
               "RelativeDocumentMoniker": "ReHub\\AdminForm.cs",
@@ -127,8 +125,7 @@
               "RelativeToolTip": "ReHub\\AdminForm.cs",
               "ViewState": "AgIAAFQAAAAAAAAAAAAgwC4BAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T16:26:17.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-08T16:26:17.804Z"
             }
           ]
         }

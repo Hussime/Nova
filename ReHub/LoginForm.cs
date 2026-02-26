@@ -34,15 +34,15 @@ namespace ReHub
 
         private User AuthenticateUserUniversal(string login, string password)
         {
-            // Сначала проверяем администратора
+            // Проверка на вход администратора
             User user = CheckUserInTable("Администратор", "М_администратора", "ФИО", login, password, "Администратор");
             if (user != null) return user;
 
-            // Затем преподавателя
+            // Проверка на вход преподавателя
             user = CheckUserInTable("Преподаватель", "М_преподавателя", "ФИО", login, password, "Преподаватель");
             if (user != null) return user;
 
-            // Затем студента
+            // Проверка на вход ученика
             user = CheckUserInTable("Студент", "М_студента", "ФИО", login, password, "Студент");
             return user;
         }
