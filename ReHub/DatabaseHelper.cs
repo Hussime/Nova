@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace ReHub
 {
     public static class DatabaseHelper
-    {
+    {   // создаем публичную строку подключения к бд
         private static string connectionString = @"Data Source=109.233.236.26;Initial Catalog=ReHub;User ID=stud;Password=123456789;TrustServerCertificate=True";
 
         public static SqlConnection GetConnection()

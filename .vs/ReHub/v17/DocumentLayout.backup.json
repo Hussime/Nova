@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\Hussime\\Desktop\\ReHub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|C:\\Users\\Hussime\\Desktop\\ReHub\\rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|c:\\users\\hussime\\desktop\\rehub\\rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|solutionrelative:rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|c:\\users\\hussime\\desktop\\rehub\\rehub\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|C:\\Users\\Hussime\\Desktop\\ReHub\\rehub\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\ReHub.csproj|solutionrelative:rehub\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -64,8 +64,7 @@
               "RelativeToolTip": "ReHub\\DatabaseHelper.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-25T08:10:46.2Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-25T08:10:46.2Z"
             },
             {
               "$type": "Document",
@@ -75,7 +74,7 @@
               "RelativeDocumentMoniker": "ReHub\\LoginForm.cs",
               "ToolTip": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\LoginForm.cs",
               "RelativeToolTip": "ReHub\\LoginForm.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAwwGwAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCQAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-25T08:06:00.995Z",
               "EditorCaption": ""
@@ -89,8 +88,7 @@
               "ToolTip": "C:\\Users\\Hussime\\Desktop\\ReHub\\ReHub\\LoginForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "ReHub\\LoginForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-25T08:05:58.821Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2026-02-25T08:05:58.821Z"
             },
             {
               "$type": "Document",
