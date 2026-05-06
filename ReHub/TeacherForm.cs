@@ -18,6 +18,7 @@ namespace ReHub
         private User currentUser;
         private DataTable electivesData;
         private string avatarPath = "";
+        private bool _isScheduleLoading = true; // Флаг для предотвращения авто-срабатывания
 
         public TeacherForm(User user)
         {
@@ -34,11 +35,16 @@ namespace ReHub
             btnCloseForm.Click += (s, e) => Application.Exit();
             dgvMyElectives.SelectionChanged += dgvMyElectives_SelectionChanged;
 
+            // НЕ подписываем событие сразу, чтобы не срабатывало при загрузке
+            // comboBoxScheduleElectives.SelectedIndexChanged += ComboBoxScheduleElectives_SelectedIndexChanged;
+
             btnApprove.Click += btnApprove_Click_1;
             btnReject.Click += btnReject_Click_1;
             btnSetSchedule.Click += btnSetSchedule_Click_1;
             btnExpelStudent.Click += button1_Click;
             button2.Click += button2_Click;
+            btnRefreshStudents.Click += BtnRefreshStudents_Click;
+            btnRefreshData.Click += BtnRefreshData_Click;
             btnMarkAll.Click += btnMarkAllTeacher_Click;
             comboBoxElectives.SelectedIndexChanged += comboBoxElectives_SelectedIndexChanged_1;
 
@@ -61,10 +67,51 @@ namespace ReHub
             LoadTeacherAvatar();
             LoadTeacherProfile();
 
+            // Теперь можно подписать событие после загрузки всех данных
+            comboBoxScheduleElectives.SelectedIndexChanged += ComboBoxScheduleElectives_SelectedIndexChanged;
+            _isScheduleLoading = false;
+
             string greeting = GetTimeBasedGreeting();
             lblCurrentUser.Text = $"{greeting}, {currentUser.FullName}!";
 
             ShowPanel("apps");
+        }
+
+        private void BtnRefreshStudents_Click(object sender, EventArgs e)
+        {
+            int electiveId = 0;
+            if (comboBoxElectives.SelectedValue != null)
+            {
+                electiveId = Convert.ToInt32(comboBoxElectives.SelectedValue);
+            }
+            LoadApprovedStudents(electiveId);
+            MessageBox.Show("Список учеников обновлён!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnRefreshData_Click(object sender, EventArgs e)
+        {
+            LoadCourseStudents();
+            LoadMyElectives();
+            LoadScheduleElectives();
+            MessageBox.Show("Данные обновлены!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ComboBoxScheduleElectives_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_isScheduleLoading) return; // Пропускаем при загрузке
+
+            if (comboBoxScheduleElectives.SelectedItem != null)
+            {
+                DataRowView row = comboBoxScheduleElectives.SelectedItem as DataRowView;
+                string name = row["Название"]?.ToString() ?? "Не выбрано";
+                string date = row["Дата_занятия"] != DBNull.Value ?
+                    Convert.ToDateTime(row["Дата_занятия"]).ToString("dd.MM.yyyy") : "Не установлено";
+                string time = row["Время_занятия"] != DBNull.Value ?
+                    row["Время_занятия"].ToString() : "Не установлено";
+
+                MessageBox.Show($"📅 Расписание для: {name}\n📆 Дата: {date}\n⏰ Время: {time}",
+                    "Информация о расписании", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ShowPanel(string name)
@@ -313,7 +360,8 @@ namespace ReHub
                 using (var connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
-                    string query = @"SELECT М_факультатива, Название 
+                    // ДОБАВЛЕНЫ Дата_занятия и Время_занятия
+                    string query = @"SELECT М_факультатива, Название, Дата_занятия, Время_занятия
                            FROM Факультатив 
                            WHERE М_преподавателя = @TeacherId
                            ORDER BY Название";
@@ -325,9 +373,14 @@ namespace ReHub
                         {
                             DataTable dt = new DataTable();
                             adapter.Fill(dt);
+
+                            // Отписываем событие перед установкой данных
+                            comboBoxScheduleElectives.SelectedIndexChanged -= ComboBoxScheduleElectives_SelectedIndexChanged;
                             comboBoxScheduleElectives.DataSource = dt;
                             comboBoxScheduleElectives.DisplayMember = "Название";
                             comboBoxScheduleElectives.ValueMember = "М_факультатива";
+                            // Подписываем событие после установки данных
+                            comboBoxScheduleElectives.SelectedIndexChanged += ComboBoxScheduleElectives_SelectedIndexChanged;
                         }
                     }
                 }
@@ -365,7 +418,7 @@ namespace ReHub
                     CreateStudentNotification(studentId, $"Ваша заявка на факультатив «{electiveName}» принята преподавателем!", "success");
                 }
 
-                MessageBox.Show($"Заявка студента {studentName} принята!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Заявка ученика {studentName} принята!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadApplications();
                 LoadApprovedStudents();
                 RefreshCourseStudentsWithFilter();
@@ -404,7 +457,7 @@ namespace ReHub
                     CreateStudentNotification(studentId, $"Ваша заявка на факультатив «{electiveName}» отклонена преподавателем.", "warning");
                 }
 
-                MessageBox.Show($"Заявка студента {studentName} отклонена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Заявка ученика {studentName} отклонена!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadApplications();
                 RefreshCourseStudentsWithFilter();
             }
@@ -446,11 +499,17 @@ namespace ReHub
                         command.Parameters.AddWithValue("@ElectiveId", electiveId);
                         command.ExecuteNonQuery();
                     }
-                    CreateTeacherNotification(currentUser.Id, $"Расписание для факультатива «{electiveName}» обновлено.", "success");
+
+                    // Создаем уведомление с полным текстом
+                    string notifText = $"📅 Расписание для факультатива «{electiveName}» установлено на {dtpLessonDate.Value:dd.MM.yyyy} в {txtLessonTime.Text}";
+                    CreateTeacherNotification(currentUser.Id, notifText, "success");
                 }
 
                 MessageBox.Show($"Расписание для факультатива '{electiveName}' установлено!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Перезагружаем данные и уведомления
                 LoadMyElectives();
+                LoadNotificationsTeacher();
             }
             catch (Exception ex)
             {
@@ -462,20 +521,20 @@ namespace ReHub
         {
             if (dgvStudents.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Выберите студента для отчисления из таблицы", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Выберите ученика для отчисления из таблицы", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            string studentName = dgvStudents.SelectedRows[0].Cells["ФИО"].Value?.ToString() ?? "неизвестный студент";
+            string studentName = dgvStudents.SelectedRows[0].Cells["ФИО"].Value?.ToString() ?? "неизвестный ученик";
             string electiveName = dgvStudents.SelectedRows[0].Cells["Факультатив"].Value?.ToString();
 
             if (string.IsNullOrEmpty(electiveName))
             {
-                MessageBox.Show("Не удалось определить факультатив студента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не удалось определить факультатив ученика", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (MessageBox.Show($"Вы уверены, что хотите отчислить студента {studentName} с факультатива '{electiveName}'?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show($"Вы уверены, что хотите отчислить ученика {studentName} с факультатива '{electiveName}'?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 ExpelStudent(studentName, electiveName);
             }
@@ -510,22 +569,23 @@ namespace ReHub
 
                         if (affectedRows > 0)
                         {
-                            MessageBox.Show($"Студент {studentName} успешно отчислен с факультатива '{electiveName}'!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Ученик {studentName} успешно отчислен с факультатива '{electiveName}'!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadApprovedStudents();
                             RefreshCourseStudentsWithFilter();
                         }
                         else
                         {
-                            MessageBox.Show($"Не удалось найти студента {studentName} на факультативе '{electiveName}'", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Не удалось найти ученика {studentName} на факультативе '{electiveName}'", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка отчисления студента: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ошибка отчисления ученика: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void dgvMyElectives_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvMyElectives.SelectedRows.Count > 0 && dgvMyElectives.CurrentRow != null)
@@ -564,6 +624,7 @@ namespace ReHub
                 catch { }
             }
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Excel.Application excelApp = null;
@@ -882,7 +943,10 @@ namespace ReHub
                     checkColumn.ExecuteNonQuery();
                     using (var cmd = new SqlCommand("INSERT INTO Уведомление (М_преподавателя, Текст, Тип) VALUES (@TeacherId, @Text, @Type)", connection))
                     {
-                        cmd.Parameters.AddWithValue("@TeacherId", teacherId); cmd.Parameters.AddWithValue("@Text", text); cmd.Parameters.AddWithValue("@Type", type); cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@TeacherId", teacherId);
+                        cmd.Parameters.AddWithValue("@Text", text);
+                        cmd.Parameters.AddWithValue("@Type", type);
+                        cmd.ExecuteNonQuery();
                     }
                 }
             }
@@ -900,7 +964,10 @@ namespace ReHub
                     checkTable.ExecuteNonQuery();
                     using (var cmd = new SqlCommand("INSERT INTO Уведомление (М_студента, Текст, Тип) VALUES (@StudentId, @Text, @Type)", connection))
                     {
-                        cmd.Parameters.AddWithValue("@StudentId", studentId); cmd.Parameters.AddWithValue("@Text", text); cmd.Parameters.AddWithValue("@Type", type); cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@StudentId", studentId);
+                        cmd.Parameters.AddWithValue("@Text", text);
+                        cmd.Parameters.AddWithValue("@Type", type);
+                        cmd.ExecuteNonQuery();
                     }
                 }
             }

@@ -3,44 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Hussime\\Desktop\\Nova\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\teacherform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\teacherform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\editteacherform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\editteacherform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\studentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\studentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\editstudentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\editstudentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\teacherform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\teacherform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\editelectiveform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\editelectiveform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\teacherregistrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\teacherregistrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\teacherform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|C:\\Users\\Hussime\\Desktop\\Nova\\rehub\\teacherform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\teacherform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\studentregistrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\studentregistrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\studentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\studentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|c:\\users\\hussime\\desktop\\nova\\rehub\\settingsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C6919BB-53AA-43FD-BA52-9A6C00DECD8F}|ReHub\\Nova.csproj|solutionrelative:rehub\\settingsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -60,7 +36,7 @@
         },
         {
           "DockedHeight": 86,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -72,79 +48,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LoginForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\LoginForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\LoginForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\LoginForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\LoginForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:11:53.754Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EditTeacherForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\EditTeacherForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\EditTeacherForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\EditTeacherForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\EditTeacherForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Title": "StudentForm.cs",
+              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\StudentForm.cs",
+              "RelativeDocumentMoniker": "ReHub\\StudentForm.cs",
+              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\StudentForm.cs",
+              "RelativeToolTip": "ReHub\\StudentForm.cs",
+              "ViewState": "AgIAAP8AAAAAAAAAAAAowOkAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:11:52.454Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2026-05-06T16:39:02.504Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EditStudentForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\EditStudentForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\EditStudentForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\EditStudentForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\EditStudentForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Title": "TeacherForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\TeacherForm.Designer.cs",
+              "RelativeDocumentMoniker": "ReHub\\TeacherForm.Designer.cs",
+              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\TeacherForm.Designer.cs",
+              "RelativeToolTip": "ReHub\\TeacherForm.Designer.cs",
+              "ViewState": "AgIAACcFAAAAAAAAAAAwwEcFAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:11:51Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2026-05-06T15:34:55.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TeacherForm.cs",
+              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\TeacherForm.cs",
+              "RelativeDocumentMoniker": "ReHub\\TeacherForm.cs",
+              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\TeacherForm.cs",
+              "RelativeToolTip": "ReHub\\TeacherForm.cs",
+              "ViewState": "AgIAALMDAAAAAAAAAADwv0QEAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T15:34:46.131Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "EditElectiveForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\EditElectiveForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\EditElectiveForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\EditElectiveForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\EditElectiveForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:11:48.444Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdminForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\AdminForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\AdminForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\AdminForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\AdminForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:11:45.746Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TeacherRegistrationForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\TeacherRegistrationForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\TeacherRegistrationForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\TeacherRegistrationForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\TeacherRegistrationForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:11:43.639Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "TeacherForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\TeacherForm.cs",
               "RelativeDocumentMoniker": "ReHub\\TeacherForm.cs",
@@ -152,42 +95,6 @@
               "RelativeToolTip": "ReHub\\TeacherForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-06T14:11:42.331Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "StudentRegistrationForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\StudentRegistrationForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\StudentRegistrationForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\StudentRegistrationForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\StudentRegistrationForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:11:40.718Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "SettingsForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\SettingsForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\SettingsForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\SettingsForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\SettingsForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:11:35.387Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "StudentForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\StudentForm.cs",
-              "RelativeDocumentMoniker": "ReHub\\StudentForm.cs",
-              "ToolTip": "C:\\Users\\Hussime\\Desktop\\Nova\\ReHub\\StudentForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ReHub\\StudentForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T14:09:12.435Z",
               "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
             }
           ]

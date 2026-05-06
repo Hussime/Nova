@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ReHub
@@ -69,17 +70,14 @@ namespace ReHub
         // ==================== НАВИГАЦИЯ ====================
         private void ShowPanel(string name)
         {
-            // Скрываем все панели
             pnlElectives.Visible = false;
             pnlApplications.Visible = false;
             pnlSchedule.Visible = false;
             pnlNotifs.Visible = false;
             pnlProfile.Visible = false;
 
-            // Сбрасываем цвета кнопок
             SetActiveNav(null);
 
-            // Показываем нужную и подсвечиваем кнопку
             switch (name)
             {
                 case "electives":
@@ -97,30 +95,29 @@ namespace ReHub
                 case "notifs":
                     pnlNotifs.Visible = true;
                     SetActiveNav(btnNavNotifs);
-                    LoadNotifications(); // Обновляем список
+                    LoadNotifications();
                     break;
                 case "profile":
                     pnlProfile.Visible = true;
                     SetActiveNav(btnNavProfile);
-                    LoadPersonalData(); // Обновляем данные
+                    LoadPersonalData();
                     break;
             }
         }
 
         private void SetActiveNav(Button btn)
         {
-            // Массив всех кнопок навигации
             var buttons = new Button[] { btnNavElectives, btnNavApplications, btnNavSchedule, btnNavNotifs, btnNavProfile };
             foreach (var b in buttons)
             {
                 if (b == btn)
                 {
-                    b.BackColor = Color.FromArgb(230, 241, 251); // Активный синий
+                    b.BackColor = Color.FromArgb(230, 241, 251);
                     b.ForeColor = Color.FromArgb(24, 95, 165);
                 }
                 else
                 {
-                    b.BackColor = Color.White; // Обычный белый
+                    b.BackColor = Color.White;
                     b.ForeColor = Color.FromArgb(80, 80, 80);
                 }
             }
@@ -134,7 +131,6 @@ namespace ReHub
                 using (var connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
-                    // Выбираем факультативы, исключая скрытые ID
                     string query = @"SELECT f.М_факультатива, f.Название, f.Описание, p.ФИО as Преподаватель, f.Макс_количество 
                                    FROM Факультатив f INNER JOIN Преподаватель p ON f.М_преподавателя = p.М_преподавателя";
                     using (var adapter = new SqlDataAdapter(query, connection))
@@ -143,7 +139,6 @@ namespace ReHub
                         adapter.Fill(dt);
                         dgvElectives.DataSource = dt;
 
-                        // Настройка отображения
                         if (dgvElectives.Columns.Contains("М_факультатива")) dgvElectives.Columns["М_факультатива"].Visible = false;
                         if (dgvElectives.Columns.Contains("Название")) dgvElectives.Columns["Название"].HeaderText = "Название";
                         if (dgvElectives.Columns.Contains("Описание")) dgvElectives.Columns["Описание"].HeaderText = "Описание";
@@ -188,7 +183,6 @@ namespace ReHub
                 using (var connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
-                    // Показываем расписание только для принятых заявок
                     string query = @"SELECT f.Название as Факультатив, p.ФИО as Преподаватель, f.Дата_занятия as Дата, f.Время_занятия as Время 
                                    FROM Факультатив f INNER JOIN Преподаватель p ON f.М_преподавателя = p.М_преподавателя 
                                    INNER JOIN Заявка z ON f.М_факультатива = z.М_факультатива 
@@ -239,7 +233,6 @@ namespace ReHub
         // ==================== ЛОГИКА ДЕЙСТВИЙ ====================
         private void btnApply_Click(object sender, EventArgs e)
         {
-            // Проверка выделения
             if (dgvElectives.SelectedRows.Count == 0) { MessageBox.Show("Выберите факультатив для подачи заявки"); return; }
 
             int electiveId = Convert.ToInt32(dgvElectives.SelectedRows[0].Cells["М_факультатива"].Value);
@@ -263,7 +256,19 @@ namespace ReHub
                         }
                     }
 
-                    // 2. Добавление заявки
+                    // 2. Получение ID преподавателя
+                    int teacherId = 0;
+                    using (var teacherCmd = new SqlCommand("SELECT М_преподавателя FROM Факультатив WHERE М_факультатива = @ElectiveId", connection))
+                    {
+                        teacherCmd.Parameters.AddWithValue("@ElectiveId", electiveId);
+                        var result = teacherCmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            teacherId = Convert.ToInt32(result);
+                        }
+                    }
+
+                    // 3. Добавление заявки
                     using (var cmd = new SqlCommand("INSERT INTO Заявка (М_студента, М_факультатива, Статус, Дата_подачи) VALUES (@StudentId, @ElectiveId, 'Ожидание', GETDATE())", connection))
                     {
                         cmd.Parameters.AddWithValue("@StudentId", currentUser.Id);
@@ -271,16 +276,56 @@ namespace ReHub
                         cmd.ExecuteNonQuery();
                     }
 
-                    // 3. Создание уведомления
+                    // 4. Уведомление студенту
                     CreateNotification(currentUser.Id, $"Заявка на факультатив «{electiveName}» успешно подана и ожидает рассмотрения преподавателем.", "info");
+
+                    // 5. 🔔 НОВОЕ: Уведомление преподавателю
+                    if (teacherId > 0)
+                    {
+                        CreateTeacherNotification(teacherId, $"📩 Новая заявка на факультатив «{electiveName}» от ученика {currentUser.FullName}.", "warning");
+                    }
                 }
 
                 MessageBox.Show("Заявка успешно подана!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadMyApplications(); // Обновляем список моих заявок
+                LoadMyApplications();
                 UpdateNotificationBadge();
             }
             catch (Exception ex) { MessageBox.Show($"Ошибка: {ex.Message}"); }
         }
+
+        private void CreateTeacherNotification(int teacherId, string text, string type = "info")
+        {
+            try
+            {
+                using (var conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+
+                    // Проверяем существование столбца М_преподавателя
+                    var checkColumn = new SqlCommand(@"
+                        IF NOT EXISTS (
+                            SELECT * FROM sys.columns 
+                            WHERE object_id = OBJECT_ID('Уведомление') 
+                            AND name = 'М_преподавателя'
+                        )
+                        BEGIN
+                            ALTER TABLE Уведомление ADD М_преподавателя INT NULL
+                        END", conn);
+                    checkColumn.ExecuteNonQuery();
+
+                    using (var cmd = new SqlCommand(
+                        "INSERT INTO Уведомление (М_преподавателя, Текст, Тип) VALUES (@TeacherId, @Text, @Type)", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@TeacherId", teacherId);
+                        cmd.Parameters.AddWithValue("@Text", text);
+                        cmd.Parameters.AddWithValue("@Type", type);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch { }
+        }
+
         private void UpdateNotificationBadge()
         {
             try
@@ -343,7 +388,10 @@ namespace ReHub
         private void btnSaveProfile_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtFullName.Text) || string.IsNullOrEmpty(txtGroup.Text) || string.IsNullOrEmpty(txtLogin.Text) || string.IsNullOrEmpty(txtPassword.Text))
-            { MessageBox.Show("Заполните обязательные поля (ФИО, Группа, Логин, Пароль)"); return; }
+            {
+                MessageBox.Show("Заполните обязательные поля (ФИО, Группа, Логин, Пароль)");
+                return;
+            }
 
             try
             {
@@ -363,7 +411,7 @@ namespace ReHub
                     }
                 }
                 MessageBox.Show("Профиль обновлен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                currentUser.FullName = txtFullName.Text; // Обновляем локального пользователя
+                currentUser.FullName = txtFullName.Text;
                 string greeting = GetTimeBasedGreeting();
                 lblCurrentUser.Text = $"{greeting}, {txtFullName.Text}!";
             }
@@ -372,7 +420,7 @@ namespace ReHub
 
         private void btnCancelProfile_Click(object sender, EventArgs e)
         {
-            LoadPersonalData(); // Сбросить изменения
+            LoadPersonalData();
         }
 
         // ==================== УВЕДОМЛЕНИЯ ====================
@@ -383,14 +431,10 @@ namespace ReHub
                 using (var conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-
-                    // Проверяем, есть ли уже уведомления у этого студента
-                    var checkCmd = new SqlCommand(
-                        "SELECT COUNT(*) FROM Уведомление WHERE М_студента = @StudentId", conn);
+                    var checkCmd = new SqlCommand("SELECT COUNT(*) FROM Уведомление WHERE М_студента = @StudentId", conn);
                     checkCmd.Parameters.AddWithValue("@StudentId", currentUser.Id);
                     int count = Convert.ToInt32(checkCmd.ExecuteScalar());
 
-                    // Если нет — создаём тестовые
                     if (count == 0)
                     {
                         CreateNotification(currentUser.Id, "Добро пожаловать в систему НОВА! 🎉", "success");
@@ -401,6 +445,7 @@ namespace ReHub
             }
             catch { }
         }
+
         private void LoadNotifications()
         {
             pnlNotifList.Controls.Clear();
@@ -449,7 +494,6 @@ namespace ReHub
 
                                 var card = BuildNotifCard(id, text, type, date, isRead);
                                 card.Location = new Point(14, y);
-                                // ИСПРАВЛЕНИЕ: используем ширину панели
                                 card.Width = pnlNotifList.ClientSize.Width - 28;
                                 pnlNotifList.Controls.Add(card);
                                 y += card.Height + 8;
@@ -465,6 +509,7 @@ namespace ReHub
                 MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
+
         private Panel BuildNotifCard(int id, string text, string type, DateTime date, bool isRead)
         {
             Panel card = new Panel();
@@ -473,9 +518,8 @@ namespace ReHub
             card.Padding = new Padding(12);
             card.Cursor = Cursors.Hand;
             card.Tag = id;
-            card.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right; // Важно!
+            card.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
-            // Синяя полоска для непрочитанных
             if (!isRead)
             {
                 card.Paint += (s, e) =>
@@ -486,7 +530,6 @@ namespace ReHub
                 };
             }
 
-            // Иконка
             Label icon = new Label();
             icon.AutoSize = false;
             icon.Size = new Size(32, 32);
@@ -501,18 +544,16 @@ namespace ReHub
                 default: icon.Text = "ℹ"; icon.ForeColor = Color.FromArgb(24, 95, 165); break;
             }
 
-            // Текст - ИСПРАВЛЕНИЕ
             Label lblText = new Label();
             lblText.Text = text;
             lblText.Font = new Font("Segoe UI", 10F);
             lblText.ForeColor = isRead ? Color.FromArgb(100, 100, 100) : Color.FromArgb(30, 30, 30);
             lblText.AutoSize = false;
-            lblText.MaximumSize = new Size(850, 0); // Максимальная ширина
-            lblText.Size = new Size(850, 40); // Увеличенная высота для переноса
+            lblText.MaximumSize = new Size(850, 0);
+            lblText.Size = new Size(850, 40);
             lblText.Location = new Point(60, 10);
-            lblText.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right; // Растягивание
+            lblText.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
-            // Дата
             Label lblDate = new Label();
             lblDate.Text = date.ToString("dd.MM HH:mm");
             lblDate.Font = new Font("Segoe UI", 8F);
@@ -522,7 +563,6 @@ namespace ReHub
 
             card.Controls.AddRange(new Control[] { icon, lblText, lblDate });
 
-            // Обработчик клика
             int capturedId = id;
             card.Click += (s, e) => MarkAsRead(capturedId, card);
             icon.Click += (s, e) => MarkAsRead(capturedId, card);
@@ -534,7 +574,6 @@ namespace ReHub
 
         private void MarkAsRead(int id, Panel card)
         {
-            // 🔔 ПОДТВЕРЖДЕНИЕ УДАЛЕНИЯ
             DialogResult result = MessageBox.Show(
                 "Удалить это уведомление?",
                 "Подтверждение",
@@ -549,8 +588,6 @@ namespace ReHub
                 using (var conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-
-                    // Удаление уведомления
                     using (var cmd = new SqlCommand(
                         "DELETE FROM Уведомление WHERE Id = @Id", conn))
                     {
@@ -558,8 +595,6 @@ namespace ReHub
                         cmd.ExecuteNonQuery();
                     }
                 }
-
-                // Перезагружаем список
                 LoadNotifications();
             }
             catch (Exception ex)
@@ -582,7 +617,6 @@ namespace ReHub
 
         private void btnMarkAll_Click(object sender, EventArgs e)
         {
-            // 🔔 ПОДТВЕРЖДЕНИЕ
             DialogResult result = MessageBox.Show(
                 "Отметить все уведомления как прочитанные?",
                 "Подтверждение",
@@ -634,7 +668,6 @@ namespace ReHub
             catch { }
         }
 
-
         // ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
         private string GetTimeBasedGreeting()
         {
@@ -644,23 +677,21 @@ namespace ReHub
             else return "Добрый вечер";
         }
 
-
         private Image GetDefaultAvatar()
         {
             var bmp = new Bitmap(100, 100);
             using (var g = Graphics.FromImage(bmp))
             {
-                g.Clear(Color.FromArgb(230, 241, 251)); // Светло-синий фон
-
+                g.Clear(Color.FromArgb(230, 241, 251));
                 using (var brush = new SolidBrush(Color.FromArgb(24, 95, 165)))
                 {
-                    // Рисуем схематичного человечка
-                    g.FillEllipse(brush, 25, 45, 50, 50); // Тело
-                    g.FillEllipse(brush, 35, 10, 30, 30); // Голова
+                    g.FillEllipse(brush, 25, 45, 50, 50);
+                    g.FillEllipse(brush, 35, 10, 30, 30);
                 }
             }
             return bmp;
         }
+
         private void MakePictureBoxCircular(PictureBox pb, int size)
         {
             pb.Width = size;
@@ -668,8 +699,7 @@ namespace ReHub
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
             pb.BackColor = Color.Transparent;
 
-            // Создаём круглую область обрезки
-            var path = new System.Drawing.Drawing2D.GraphicsPath();
+            var path = new GraphicsPath();
             path.AddEllipse(0, 0, size - 1, size - 1);
             pb.Region = new Region(path);
         }
@@ -688,14 +718,12 @@ namespace ReHub
             }
             else
             {
-                avatarImg = GetDefaultAvatar(); // Стандартная аватарка
+                avatarImg = GetDefaultAvatar();
             }
 
-            // Делаем PictureBox круглыми
             MakePictureBoxCircular(picAvatar, 36);
             MakePictureBoxCircular(picAvatarProfile, 80);
 
-            // Применяем изображение
             picAvatar.Image = avatarImg;
             picAvatarProfile.Image = avatarImg;
         }
@@ -718,7 +746,7 @@ namespace ReHub
 
                             string path = Path.Combine(dir, $"student_{currentUser.Id}.png");
                             img.Save(path, ImageFormat.Png);
-                            LoadAvatar(); // Перезагружаем аватар
+                            LoadAvatar();
                         }
                         MessageBox.Show("Аватарка успешно обновлена!", "Успех",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);

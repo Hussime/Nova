@@ -73,6 +73,7 @@
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.pnlStudentsActions = new System.Windows.Forms.Panel();
             this.btnExpelStudent = new System.Windows.Forms.Button();
+            this.btnRefreshStudents = new System.Windows.Forms.Button();
             this.pnlMyElectives = new System.Windows.Forms.Panel();
             this.pnlMyElHead = new System.Windows.Forms.Panel();
             this.lblMyElTitle = new System.Windows.Forms.Label();
@@ -80,6 +81,7 @@
             this.dgvCourseStudents = new System.Windows.Forms.DataGridView();
             this.pnlElectiveActions = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnRefreshData = new System.Windows.Forms.Button();
             this.pnlSchedule = new System.Windows.Forms.Panel();
             this.pnlScheduleHead = new System.Windows.Forms.Panel();
             this.lblScheduleTitle = new System.Windows.Forms.Label();
@@ -102,8 +104,8 @@
             this.btnMarkAll = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
+            this.pnlTitleBar.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.pnlTeacherProfile.SuspendLayout();
@@ -821,6 +823,7 @@
             // 
             this.pnlStudentsActions.BackColor = System.Drawing.Color.Transparent;
             this.pnlStudentsActions.Controls.Add(this.btnExpelStudent);
+            this.pnlStudentsActions.Controls.Add(this.btnRefreshStudents);
             this.pnlStudentsActions.Location = new System.Drawing.Point(14, 522);
             this.pnlStudentsActions.Name = "pnlStudentsActions";
             this.pnlStudentsActions.Size = new System.Drawing.Size(960, 44);
@@ -841,6 +844,22 @@
             this.btnExpelStudent.TabIndex = 0;
             this.btnExpelStudent.Text = "Отчислить";
             this.btnExpelStudent.UseVisualStyleBackColor = false;
+            // 
+            // btnRefreshStudents
+            // 
+            this.btnRefreshStudents.BackColor = System.Drawing.Color.White;
+            this.btnRefreshStudents.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefreshStudents.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btnRefreshStudents.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(240)))));
+            this.btnRefreshStudents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshStudents.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnRefreshStudents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.btnRefreshStudents.Location = new System.Drawing.Point(114, 0);
+            this.btnRefreshStudents.Name = "btnRefreshStudents";
+            this.btnRefreshStudents.Size = new System.Drawing.Size(108, 36);
+            this.btnRefreshStudents.TabIndex = 2;
+            this.btnRefreshStudents.Text = "🔄 Обновить";
+            this.btnRefreshStudents.UseVisualStyleBackColor = false;
             // 
             // pnlMyElectives
             // 
@@ -931,6 +950,7 @@
             // 
             this.pnlElectiveActions.BackColor = System.Drawing.Color.Transparent;
             this.pnlElectiveActions.Controls.Add(this.button2);
+            this.pnlElectiveActions.Controls.Add(this.btnRefreshData);
             this.pnlElectiveActions.Location = new System.Drawing.Point(14, 522);
             this.pnlElectiveActions.Name = "pnlElectiveActions";
             this.pnlElectiveActions.Size = new System.Drawing.Size(960, 44);
@@ -951,6 +971,22 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Отчёт по ученикам";
             this.button2.UseVisualStyleBackColor = false;
+            // 
+            // btnRefreshData
+            // 
+            this.btnRefreshData.BackColor = System.Drawing.Color.White;
+            this.btnRefreshData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefreshData.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btnRefreshData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(240)))));
+            this.btnRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshData.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnRefreshData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.btnRefreshData.Location = new System.Drawing.Point(200, 0);
+            this.btnRefreshData.Name = "btnRefreshData";
+            this.btnRefreshData.Size = new System.Drawing.Size(108, 36);
+            this.btnRefreshData.TabIndex = 2;
+            this.btnRefreshData.Text = "🔄 Обновить";
+            this.btnRefreshData.UseVisualStyleBackColor = false;
             // 
             // pnlSchedule
             // 
@@ -1231,9 +1267,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TeacherForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
             this.pnlTitleBar.ResumeLayout(false);
             this.pnlTitleBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
             this.pnlSidebar.ResumeLayout(false);
             this.pnlSidebar.PerformLayout();
             this.pnlContent.ResumeLayout(false);
@@ -1304,6 +1340,7 @@
         private System.Windows.Forms.Button btnApprove, btnReject;
         private System.Windows.Forms.Button btnExpelStudent, button1, button2;
         private System.Windows.Forms.Button btnSetSchedule;
+        private System.Windows.Forms.Button btnRefreshStudents, btnRefreshData;
 
         private System.Windows.Forms.DataGridView dgvApplications, dgvStudents;
         private System.Windows.Forms.DataGridView dgvMyElectives, dgvCourseStudents;
