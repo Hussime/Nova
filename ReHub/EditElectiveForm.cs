@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ReHub
@@ -17,18 +18,18 @@ namespace ReHub
             this.selectedRow = row;
             LoadFormData();
             LoadTeachersComboBox();
+
+            
         }
 
         private void LoadFormData()
         {
-            // Заполняем поля данными из выбранной строки
             txtElectiveName.Text = selectedRow.Cells["Название"].Value?.ToString() ?? "";
             txtElectiveDescription.Text = selectedRow.Cells["Описание"].Value?.ToString() ?? "";
 
             if (selectedRow.Cells["Макс_количество"].Value != null)
                 numMaxStudents.Value = Convert.ToInt32(selectedRow.Cells["Макс_количество"].Value);
 
-            // Дата и время занятия
             if (selectedRow.Cells["Дата_занятия"].Value != null && selectedRow.Cells["Дата_занятия"].Value != DBNull.Value)
                 dtpLessonDate.Value = Convert.ToDateTime(selectedRow.Cells["Дата_занятия"].Value);
 
@@ -45,25 +46,22 @@ namespace ReHub
                     string query = "SELECT М_преподавателя, ФИО FROM Преподаватель";
 
                     using (var command = new SqlCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
                     {
-                        using (var reader = command.ExecuteReader())
+                        cmbTeachers.Items.Clear();
+                        while (reader.Read())
                         {
-                            cmbTeachers.Items.Clear();
-                            while (reader.Read())
+                            cmbTeachers.Items.Add(new
                             {
-                                cmbTeachers.Items.Add(new
-                                {
-                                    Id = reader.GetInt32(0),
-                                    Name = reader.GetString(1)
-                                });
-                            }
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1)
+                            });
                         }
                     }
                 }
                 cmbTeachers.DisplayMember = "Name";
                 cmbTeachers.ValueMember = "Id";
 
-                // Устанавливаем текущего преподавателя
                 string currentTeacher = selectedRow.Cells["Преподаватель"].Value?.ToString() ?? "";
                 foreach (var item in cmbTeachers.Items)
                 {
@@ -82,8 +80,7 @@ namespace ReHub
             }
         }
 
-
-        private void btnSave_Click_1(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtElectiveName.Text) || cmbTeachers.SelectedItem == null)
             {
@@ -139,13 +136,13 @@ namespace ReHub
             }
         }
 
-        private void btnCancel_Click_1(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void label7_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();

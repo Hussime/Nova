@@ -13,12 +13,11 @@ namespace ReHub
             this.txtLogin.KeyPress += new KeyPressEventHandler(this.txtLogin_KeyPress);
         }
 
-
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                btnLogin_Click_1(sender, e);
+                btnLogin_Click(sender, e);
             }
         }
 
@@ -26,11 +25,9 @@ namespace ReHub
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                btnLogin_Click_1(sender, e);
+                btnLogin_Click(sender, e);
             }
         }
-
-
 
         private User AuthenticateUserUniversal(string login, string password)
         {
@@ -77,12 +74,12 @@ namespace ReHub
             return null;
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnLogin_Click_1(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             string login = txtLogin.Text.Trim();
             string password = txtPassword.Text;
@@ -98,7 +95,7 @@ namespace ReHub
                 User user = AuthenticateUserUniversal(login, password);
                 if (user != null)
                 {
-                    MessageBox.Show($"Добро пожаловать, {user.Role}!",
+                    MessageBox.Show($"Добро пожаловать, {user.FullName}!",
                         "Успешный вход", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Hide();
@@ -131,18 +128,18 @@ namespace ReHub
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnShowPassword_Click(object sender, EventArgs e)
         {
             // Переключаем видимость пароля
-            if (txtPassword.PasswordChar == '*')
+            if (txtPassword.PasswordChar == '•')
             {
                 txtPassword.PasswordChar = '\0'; // Показываем пароль
-                btnShowPassword.Text = "🔒"; // Меняем иконку на закрытый глаз
+                btnShowPassword.Text = "🔒"; // Меняем иконку
             }
             else
             {
-                txtPassword.PasswordChar = '*'; // Скрываем пароль
-                btnShowPassword.Text = "👁"; // Меняем иконку на открытый глаз
+                txtPassword.PasswordChar = '•'; // Скрываем пароль
+                btnShowPassword.Text = "👁"; // Меняем иконку
             }
         }
     }

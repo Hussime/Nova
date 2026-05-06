@@ -1,0 +1,80 @@
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\EPPlus.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\Microsoft.Bcl.Cryptography.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Buffers.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Formats.Asn1.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Memory.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Security.Cryptography.Xml.dll
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\EPPlus.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\Microsoft.Bcl.Cryptography.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Buffers.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Formats.Asn1.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Memory.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\System.Security.Cryptography.Xml.xml
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\Nova.csproj.AssemblyReference.cache
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.AdminForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.EditElectiveForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.EditStudentForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.EditTeacherForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.StudentRegistrationForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.TeacherForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.StudentForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.LoginForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.TeacherRegistrationForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\Nova.csproj.GenerateResource.cache
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\Nova.csproj.CoreCompileInputs.cache
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\Nova.csproj.Up2Date
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\EPPlus.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\Microsoft.Bcl.Cryptography.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Buffers.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Formats.Asn1.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Memory.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Security.Cryptography.Xml.dll
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\EPPlus.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\Microsoft.Bcl.Cryptography.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Buffers.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Formats.Asn1.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Memory.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\System.Security.Cryptography.Xml.xml
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\Nova.csproj.AssemblyReference.cache
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.AdminForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.EditElectiveForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.EditStudentForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.EditTeacherForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.StudentRegistrationForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.TeacherForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.StudentForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.LoginForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.TeacherRegistrationForm.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\Nova.csproj.GenerateResource.cache
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\Nova.csproj.CoreCompileInputs.cache
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\Nova.csproj.Up2Date
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\Nova.exe.config
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\Nova.exe
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\bin\Debug\Nova.pdb
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\Nova.exe
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\Nova.pdb
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\Nova.Properties.Resources.resources
+C:\Users\Hussime\Desktop\Nova — копия\ReHub\obj\Debug\ReHub.SettingsForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\Nova.exe.config
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\Nova.exe
+C:\Users\Hussime\Desktop\Nova\ReHub\bin\Debug\Nova.pdb
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\ReHub.SettingsForm.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\Nova.Properties.Resources.resources
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\Nova.exe
+C:\Users\Hussime\Desktop\Nova\ReHub\obj\Debug\Nova.pdb

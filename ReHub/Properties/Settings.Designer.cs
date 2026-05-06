@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ReHub.Properties {
+namespace Nova.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

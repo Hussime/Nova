@@ -1,0 +1,16 @@
+2026-03-02T07:51:56.9576284+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.4.3+c252b64ad913ea9411fc5d17bfd5580d2d061497
+2026-03-02T07:51:56.9850180+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-03-02T07:51:56.9867267+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-03-02T07:51:56.9867353+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 07:51:56.924
+2026-03-02T07:51:56.9888250+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 8644
+2026-03-02T07:51:56.9890387+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 8.0.14
+2026-03-02T07:51:56.9890562+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.14\System.Private.CoreLib.dll
+2026-03-02T07:51:56.9890673+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-03-02T07:51:56.9890701+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\Hussime\Desktop\ReHub\Tests\bin\Debug\net8.0\Tests.dll
+2026-03-02T07:51:56.9893446+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\Hussime\Desktop\ReHub\Tests\bin\Debug\net8.0\Log --results-directory C:\Users\Hussime\Desktop\ReHub\TestResults --client-port 62568'
+2026-03-02T07:51:56.9914476+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-03-02T07:51:57.0325218+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-03-02T07:51:57.0405431+00:00 Microsoft.Testing.Platform.Configurations.JsonConfigurationSource+JsonConfigurationProvider INFORMATION Config file 'C:\Users\Hussime\Desktop\ReHub\Tests\bin\Debug\net8.0\Tests.testconfig.json' not found.
+2026-03-02T07:51:57.0432345+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable:  VSTest mode: False
+2026-03-02T07:51:57.3507597+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: 'MSTestExtension' Version: '3.6.4' DisplayName: 'MSTest' Description: 'MSTest Framework for Microsoft Testing Platform'
+2026-03-02T07:51:57.5292146+00:00 Microsoft.Testing.Extensions.VSTestBridge.ObjectModel.MessageLoggerAdapter INFORMATION Включена параллелизация тестов для C:\Users\Hussime\Desktop\ReHub\Tests\bin\Debug\net8.0\Tests.dll (рабочие роли: 16, область: MethodLevel)

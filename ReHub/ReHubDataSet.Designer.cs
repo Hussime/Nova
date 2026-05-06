@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace ReHub {
+namespace Nova {
     
     
     /// <summary>
@@ -3038,7 +3038,7 @@ namespace ReHub {
         }
     }
 }
-namespace ReHub.ReHubDataSetTableAdapters {
+namespace Nova.ReHubDataSetTableAdapters {
     
     
     /// <summary>
@@ -3205,7 +3205,7 @@ SELECT М_администратора, ФИО, Логин, Пароль FROM А
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ReHub.Properties.Settings.Default.ReHubConnectionString;
+            this._connection.ConnectionString = global::Nova.Properties.Settings.Default.ReHubConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3595,7 +3595,7 @@ SELECT М_заявки, М_студента, М_факультатива, Дат
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ReHub.Properties.Settings.Default.ReHubConnectionString;
+            this._connection.ConnectionString = global::Nova.Properties.Settings.Default.ReHubConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4011,7 +4011,7 @@ SELECT М_преподавателя, ФИО, Кафедра, Email, Телеф�
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ReHub.Properties.Settings.Default.ReHubConnectionString;
+            this._connection.ConnectionString = global::Nova.Properties.Settings.Default.ReHubConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4489,7 +4489,7 @@ SELECT М_студента, ФИО, Группа, Email, Телефон, Лог�
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ReHub.Properties.Settings.Default.ReHubConnectionString;
+            this._connection.ConnectionString = global::Nova.Properties.Settings.Default.ReHubConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4966,7 +4966,7 @@ SELECT М_факультатива, Название, Описание, М_пр�
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ReHub.Properties.Settings.Default.ReHubConnectionString;
+            this._connection.ConnectionString = global::Nova.Properties.Settings.Default.ReHubConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

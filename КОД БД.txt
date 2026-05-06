@@ -1,0 +1,80 @@
+CREATE DATABASE ReHub;
+GO
+
+USE ReHub;
+GO
+
+-- Таблица ПРЕПОДАВАТЕЛЬ
+CREATE TABLE Преподаватель (
+    М_преподавателя INT IDENTITY(1,1) PRIMARY KEY,
+    ФИО NVARCHAR(100) NOT NULL,
+    Кафедра NVARCHAR(100),
+    Email NVARCHAR(100),
+    Телефон NVARCHAR(20),
+    Логин NVARCHAR(50) NOT NULL UNIQUE,
+    Пароль NVARCHAR(255) NOT NULL
+);
+
+-- Таблица СТУДЕНТ
+CREATE TABLE Студент (
+    М_студента INT IDENTITY(1,1) PRIMARY KEY,
+    ФИО NVARCHAR(100) NOT NULL,
+    Группа NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(100),
+    Телефон NVARCHAR(20),
+    Логин NVARCHAR(50) NOT NULL UNIQUE,
+    Пароль NVARCHAR(255) NOT NULL
+);
+
+-- Таблица ФАКУЛЬТАТИВ
+CREATE TABLE Факультатив (
+    М_факультатива INT IDENTITY(1,1) PRIMARY KEY,
+    Название NVARCHAR(100) NOT NULL,
+    Описание NVARCHAR(500),
+    М_преподавателя INT NOT NULL,
+    Макс_количество INT DEFAULT 30,
+    Статус NVARCHAR(20) DEFAULT 'Активен',
+    Дата_создания DATETIME DEFAULT GETDATE(),
+    Дата_занятия DATE, -- Добавлено по диаграмме
+    Время_занятия TIME, -- Добавлено по диаграмме
+    FOREIGN KEY (М_преподавателя) REFERENCES Преподаватель(М_преподавателя)
+);
+
+-- Таблица ЗАЯВКА
+CREATE TABLE Заявка (
+    М_заявки INT IDENTITY(1,1) PRIMARY KEY,
+    М_студента INT NOT NULL,
+    М_факультатива INT NOT NULL,
+    Дата_подачи DATETIME DEFAULT GETDATE(),
+    Статус NVARCHAR(20) DEFAULT 'Ожидание',
+    Проверяет INT NULL,
+    FOREIGN KEY (М_студента) REFERENCES Студент(М_студента),
+    FOREIGN KEY (М_факультатива) REFERENCES Факультатив(М_факультатива),
+    FOREIGN KEY (Проверяет) REFERENCES Преподаватель(М_преподавателя)
+);
+
+-- Таблица АДМИНИСТРАТОР
+CREATE TABLE Администратор (
+    М_администратора INT IDENTITY(1,1) PRIMARY KEY,
+    ФИО NVARCHAR(100) NOT NULL,
+    Логин NVARCHAR(50) NOT NULL UNIQUE,
+    Пароль NVARCHAR(255) NOT NULL
+);
+
+INSERT INTO Преподаватель (ФИО, Кафедра, Email, Телефон, Логин, Пароль) VALUES
+('Иванов Петр Сергеевич', 'Информатики', 'ivanov@university.edu', '+7-999-123-4567', 'teacher1', 'teacher123'),
+('Сидорова Мария Ивановна', 'Математики', 'sidorova@university.edu', '+7-999-123-4568', 'teacher2', 'teacher123');
+
+INSERT INTO Студент (ФИО, Группа, Email, Телефон, Логин, Пароль) VALUES
+('Козлов Алексей Сергеевич', 'ИТ-201', 'kozlov@university.edu', '+7-999-123-4570', 'student1', 'student123'),
+('Смирнова Анна Дмитриевна', 'ИТ-202', 'smirnova@university.edu', '+7-999-123-4571', 'student2', 'student123'),
+('Попов Дмитрий Игоревич', 'МАТ-201', 'popov@university.edu', '+7-999-123-4572', 'student3', 'student123');
+
+INSERT INTO Администратор (ФИО, Логин, Пароль) VALUES
+('Администратор Системы', 'admin', 'admin123');
+
+INSERT INTO Факультатив (Название, Описание, М_преподавателя, Макс_количество, Дата_занятия, Время_занятия) VALUES
+('Программирование на C#', 'Основы программирования на языке C#', 1, 25, '2024-01-15', '14:30:00'),
+('Веб-разработка', 'Создание современных веб-приложений', 1, 20, '2024-01-16', '16:00:00'),
+('Математический анализ', 'Углубленное изучение математики', 2, 30, '2024-01-17', '10:00:00'),
+('Английский для IT', 'Технический английский язык', 2, 15, '2024-01-18', '13:00:00');

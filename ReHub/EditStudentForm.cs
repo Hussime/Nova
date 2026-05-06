@@ -27,11 +27,12 @@ namespace ReHub
             txtPassword.Text = selectedRow.Cells["Пароль"].Value?.ToString() ?? "";
         }
 
-
-        private void btnSave_Click_1(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFullName.Text) || string.IsNullOrEmpty(txtGroup.Text) ||
-               string.IsNullOrEmpty(txtLogin.Text) || string.IsNullOrEmpty(txtPassword.Text))
+            if (string.IsNullOrEmpty(txtFullName.Text) ||
+                string.IsNullOrEmpty(txtGroup.Text) ||
+                string.IsNullOrEmpty(txtLogin.Text) ||
+                string.IsNullOrEmpty(txtPassword.Text))
             {
                 MessageBox.Show("Заполните обязательные поля (ФИО, Группа, Логин, Пароль)", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -83,13 +84,13 @@ namespace ReHub
             }
         }
 
-        private void btnCancel_Click_1(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void label8_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
