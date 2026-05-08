@@ -66,14 +66,6 @@
             this.btnDeleteStudent = new System.Windows.Forms.Button();
             this.btnGenerateStudentsReport = new System.Windows.Forms.Button();
             this.pnlAnalytics = new System.Windows.Forms.Panel();
-            this.pnlTabBar = new System.Windows.Forms.Panel();
-            this.btnTabElectives = new System.Windows.Forms.Button();
-            this.btnTabTeachers = new System.Windows.Forms.Button();
-            this.btnTabStudents = new System.Windows.Forms.Button();
-            this.chartBarRequests = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chartPieStatuses = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dgvTopElectives = new System.Windows.Forms.DataGridView();
-            this.pnlNotifications = new System.Windows.Forms.Panel();
             this.pnlTitleBar.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
             this.pnlContent.SuspendLayout();
@@ -88,10 +80,6 @@
             this.pnlStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
             this.pnlStudentActions.SuspendLayout();
-            this.pnlTabBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartBarRequests)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPieStatuses)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTopElectives)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTitleBar
@@ -276,7 +264,6 @@
             this.pnlContent.Controls.Add(this.pnlTeachers);
             this.pnlContent.Controls.Add(this.pnlStudents);
             this.pnlContent.Controls.Add(this.pnlAnalytics);
-            this.pnlContent.Controls.Add(this.pnlTabBar);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(190, 48);
             this.pnlContent.Name = "pnlContent";
@@ -290,17 +277,17 @@
             this.pnlElectives.Controls.Add(this.pnlElectiveForm);
             this.pnlElectives.Controls.Add(this.pnlElectiveActions);
             this.pnlElectives.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlElectives.Location = new System.Drawing.Point(0, 40);
+            this.pnlElectives.Location = new System.Drawing.Point(0, 0);
             this.pnlElectives.Name = "pnlElectives";
             this.pnlElectives.Padding = new System.Windows.Forms.Padding(14);
-            this.pnlElectives.Size = new System.Drawing.Size(1310, 632);
+            this.pnlElectives.Size = new System.Drawing.Size(1310, 672);
             this.pnlElectives.TabIndex = 0;
             // 
             // dgvElectives
             // 
             this.dgvElectives.AllowUserToAddRows = false;
             this.dgvElectives.AllowUserToDeleteRows = false;
-            this.dgvElectives.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvElectives.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvElectives.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvElectives.BackgroundColor = System.Drawing.Color.White;
@@ -334,12 +321,12 @@
             this.dgvElectives.RowHeadersVisible = false;
             this.dgvElectives.RowTemplate.Height = 34;
             this.dgvElectives.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvElectives.Size = new System.Drawing.Size(1410, 290);
+            this.dgvElectives.Size = new System.Drawing.Size(1282, 290);
             this.dgvElectives.TabIndex = 1;
             // 
             // pnlElectiveForm
             // 
-            this.pnlElectiveForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlElectiveForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlElectiveForm.BackColor = System.Drawing.Color.Transparent;
             this.pnlElectiveForm.Controls.Add(this.lblElectiveName);
@@ -352,7 +339,7 @@
             this.pnlElectiveForm.Controls.Add(this.txtElectiveDescription);
             this.pnlElectiveForm.Location = new System.Drawing.Point(14, 312);
             this.pnlElectiveForm.Name = "pnlElectiveForm";
-            this.pnlElectiveForm.Size = new System.Drawing.Size(1890, 110);
+            this.pnlElectiveForm.Size = new System.Drawing.Size(1282, 110);
             this.pnlElectiveForm.TabIndex = 2;
             // 
             // lblElectiveName
@@ -443,7 +430,7 @@
             // 
             // pnlElectiveActions
             // 
-            this.pnlElectiveActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlElectiveActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlElectiveActions.BackColor = System.Drawing.Color.Transparent;
             this.pnlElectiveActions.Controls.Add(this.btnCreateElective);
@@ -453,7 +440,7 @@
             this.pnlElectiveActions.Controls.Add(this.btnRefresh);
             this.pnlElectiveActions.Location = new System.Drawing.Point(14, 426);
             this.pnlElectiveActions.Name = "pnlElectiveActions";
-            this.pnlElectiveActions.Size = new System.Drawing.Size(1890, 44);
+            this.pnlElectiveActions.Size = new System.Drawing.Size(1282, 44);
             this.pnlElectiveActions.TabIndex = 3;
             // 
             // btnCreateElective
@@ -548,10 +535,10 @@
             this.pnlTeachers.Controls.Add(this.dgvTeachers);
             this.pnlTeachers.Controls.Add(this.pnlTeacherActions);
             this.pnlTeachers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTeachers.Location = new System.Drawing.Point(0, 40);
+            this.pnlTeachers.Location = new System.Drawing.Point(0, 0);
             this.pnlTeachers.Name = "pnlTeachers";
             this.pnlTeachers.Padding = new System.Windows.Forms.Padding(14);
-            this.pnlTeachers.Size = new System.Drawing.Size(1310, 632);
+            this.pnlTeachers.Size = new System.Drawing.Size(1310, 672);
             this.pnlTeachers.TabIndex = 1;
             this.pnlTeachers.Visible = false;
             // 
@@ -559,7 +546,7 @@
             // 
             this.dgvTeachers.AllowUserToAddRows = false;
             this.dgvTeachers.AllowUserToDeleteRows = false;
-            this.dgvTeachers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvTeachers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTeachers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTeachers.BackgroundColor = System.Drawing.Color.White;
@@ -593,12 +580,12 @@
             this.dgvTeachers.RowHeadersVisible = false;
             this.dgvTeachers.RowTemplate.Height = 34;
             this.dgvTeachers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTeachers.Size = new System.Drawing.Size(1410, 320);
+            this.dgvTeachers.Size = new System.Drawing.Size(1282, 320);
             this.dgvTeachers.TabIndex = 0;
             // 
             // pnlTeacherActions
             // 
-            this.pnlTeacherActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlTeacherActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTeacherActions.BackColor = System.Drawing.Color.Transparent;
             this.pnlTeacherActions.Controls.Add(this.btnCreateTeacher);
@@ -607,7 +594,7 @@
             this.pnlTeacherActions.Controls.Add(this.btnGenerateTeachersReport);
             this.pnlTeacherActions.Location = new System.Drawing.Point(14, 342);
             this.pnlTeacherActions.Name = "pnlTeacherActions";
-            this.pnlTeacherActions.Size = new System.Drawing.Size(1890, 44);
+            this.pnlTeacherActions.Size = new System.Drawing.Size(1282, 44);
             this.pnlTeacherActions.TabIndex = 1;
             // 
             // btnCreateTeacher
@@ -685,10 +672,10 @@
             this.pnlStudents.Controls.Add(this.dgvStudents);
             this.pnlStudents.Controls.Add(this.pnlStudentActions);
             this.pnlStudents.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlStudents.Location = new System.Drawing.Point(0, 40);
+            this.pnlStudents.Location = new System.Drawing.Point(0, 0);
             this.pnlStudents.Name = "pnlStudents";
             this.pnlStudents.Padding = new System.Windows.Forms.Padding(14);
-            this.pnlStudents.Size = new System.Drawing.Size(1310, 632);
+            this.pnlStudents.Size = new System.Drawing.Size(1310, 672);
             this.pnlStudents.TabIndex = 2;
             this.pnlStudents.Visible = false;
             // 
@@ -696,7 +683,7 @@
             // 
             this.dgvStudents.AllowUserToAddRows = false;
             this.dgvStudents.AllowUserToDeleteRows = false;
-            this.dgvStudents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvStudents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStudents.BackgroundColor = System.Drawing.Color.White;
@@ -730,12 +717,12 @@
             this.dgvStudents.RowHeadersVisible = false;
             this.dgvStudents.RowTemplate.Height = 34;
             this.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStudents.Size = new System.Drawing.Size(1410, 320);
+            this.dgvStudents.Size = new System.Drawing.Size(1282, 320);
             this.dgvStudents.TabIndex = 0;
             // 
             // pnlStudentActions
             // 
-            this.pnlStudentActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlStudentActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlStudentActions.BackColor = System.Drawing.Color.Transparent;
             this.pnlStudentActions.Controls.Add(this.btnCreateStudent);
@@ -744,7 +731,7 @@
             this.pnlStudentActions.Controls.Add(this.btnGenerateStudentsReport);
             this.pnlStudentActions.Location = new System.Drawing.Point(14, 342);
             this.pnlStudentActions.Name = "pnlStudentActions";
-            this.pnlStudentActions.Size = new System.Drawing.Size(1890, 44);
+            this.pnlStudentActions.Size = new System.Drawing.Size(1282, 44);
             this.pnlStudentActions.TabIndex = 1;
             // 
             // btnCreateStudent
@@ -820,97 +807,11 @@
             this.pnlAnalytics.AutoScroll = true;
             this.pnlAnalytics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(240)))));
             this.pnlAnalytics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlAnalytics.Location = new System.Drawing.Point(0, 40);
+            this.pnlAnalytics.Location = new System.Drawing.Point(0, 0);
             this.pnlAnalytics.Name = "pnlAnalytics";
-            this.pnlAnalytics.Size = new System.Drawing.Size(1310, 632);
+            this.pnlAnalytics.Size = new System.Drawing.Size(1310, 672);
             this.pnlAnalytics.TabIndex = 3;
             this.pnlAnalytics.Visible = false;
-            // 
-            // pnlTabBar
-            // 
-            this.pnlTabBar.BackColor = System.Drawing.Color.White;
-            this.pnlTabBar.Controls.Add(this.btnTabElectives);
-            this.pnlTabBar.Controls.Add(this.btnTabTeachers);
-            this.pnlTabBar.Controls.Add(this.btnTabStudents);
-            this.pnlTabBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTabBar.Location = new System.Drawing.Point(0, 0);
-            this.pnlTabBar.Name = "pnlTabBar";
-            this.pnlTabBar.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.pnlTabBar.Size = new System.Drawing.Size(1310, 40);
-            this.pnlTabBar.TabIndex = 4;
-            // 
-            // btnTabElectives
-            // 
-            this.btnTabElectives.BackColor = System.Drawing.Color.White;
-            this.btnTabElectives.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTabElectives.FlatAppearance.BorderSize = 0;
-            this.btnTabElectives.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTabElectives.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnTabElectives.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(95)))), ((int)(((byte)(165)))));
-            this.btnTabElectives.Location = new System.Drawing.Point(12, 0);
-            this.btnTabElectives.Name = "btnTabElectives";
-            this.btnTabElectives.Size = new System.Drawing.Size(140, 40);
-            this.btnTabElectives.TabIndex = 0;
-            this.btnTabElectives.Text = "Факультативы";
-            this.btnTabElectives.UseVisualStyleBackColor = false;
-            // 
-            // btnTabTeachers
-            // 
-            this.btnTabTeachers.BackColor = System.Drawing.Color.White;
-            this.btnTabTeachers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTabTeachers.FlatAppearance.BorderSize = 0;
-            this.btnTabTeachers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTabTeachers.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnTabTeachers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.btnTabTeachers.Location = new System.Drawing.Point(154, 0);
-            this.btnTabTeachers.Name = "btnTabTeachers";
-            this.btnTabTeachers.Size = new System.Drawing.Size(140, 40);
-            this.btnTabTeachers.TabIndex = 1;
-            this.btnTabTeachers.Text = "Преподаватели";
-            this.btnTabTeachers.UseVisualStyleBackColor = false;
-            // 
-            // btnTabStudents
-            // 
-            this.btnTabStudents.BackColor = System.Drawing.Color.White;
-            this.btnTabStudents.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTabStudents.FlatAppearance.BorderSize = 0;
-            this.btnTabStudents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTabStudents.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnTabStudents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.btnTabStudents.Location = new System.Drawing.Point(296, 0);
-            this.btnTabStudents.Name = "btnTabStudents";
-            this.btnTabStudents.Size = new System.Drawing.Size(140, 40);
-            this.btnTabStudents.TabIndex = 2;
-            this.btnTabStudents.Text = "Ученики";
-            this.btnTabStudents.UseVisualStyleBackColor = false;
-            // 
-            // chartBarRequests
-            // 
-            this.chartBarRequests.Location = new System.Drawing.Point(0, 0);
-            this.chartBarRequests.Name = "chartBarRequests";
-            this.chartBarRequests.Size = new System.Drawing.Size(300, 300);
-            this.chartBarRequests.TabIndex = 0;
-            // 
-            // chartPieStatuses
-            // 
-            this.chartPieStatuses.Location = new System.Drawing.Point(0, 0);
-            this.chartPieStatuses.Name = "chartPieStatuses";
-            this.chartPieStatuses.Size = new System.Drawing.Size(300, 300);
-            this.chartPieStatuses.TabIndex = 0;
-            // 
-            // dgvTopElectives
-            // 
-            this.dgvTopElectives.Location = new System.Drawing.Point(0, 0);
-            this.dgvTopElectives.Name = "dgvTopElectives";
-            this.dgvTopElectives.Size = new System.Drawing.Size(240, 150);
-            this.dgvTopElectives.TabIndex = 0;
-            // 
-            // pnlNotifications
-            // 
-            this.pnlNotifications.Location = new System.Drawing.Point(0, 0);
-            this.pnlNotifications.Name = "pnlNotifications";
-            this.pnlNotifications.Size = new System.Drawing.Size(200, 100);
-            this.pnlNotifications.TabIndex = 0;
             // 
             // AdminForm
             // 
@@ -940,10 +841,6 @@
             this.pnlStudents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).EndInit();
             this.pnlStudentActions.ResumeLayout(false);
-            this.pnlTabBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartBarRequests)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPieStatuses)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTopElectives)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -964,10 +861,6 @@
         private System.Windows.Forms.Label lblNavMain;
         private System.Windows.Forms.Label lblNavSystem;
         private System.Windows.Forms.Panel pnlContent;
-        private System.Windows.Forms.Panel pnlTabBar;
-        private System.Windows.Forms.Button btnTabElectives;
-        private System.Windows.Forms.Button btnTabTeachers;
-        private System.Windows.Forms.Button btnTabStudents;
         private System.Windows.Forms.Panel pnlElectives;
         private System.Windows.Forms.DataGridView dgvElectives;
         private System.Windows.Forms.Panel pnlElectiveForm;
@@ -1001,9 +894,5 @@
         private System.Windows.Forms.Button btnGenerateStudentsReport;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnlAnalytics;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartBarRequests;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartPieStatuses;
-        private System.Windows.Forms.DataGridView dgvTopElectives;
-        private System.Windows.Forms.Panel pnlNotifications;
     }
 }

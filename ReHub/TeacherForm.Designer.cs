@@ -50,7 +50,7 @@
             this.lblTeacherEmaill = new System.Windows.Forms.Label();
             this.txtTeacherEmail = new System.Windows.Forms.TextBox();
             this.lblTeacherPhonel = new System.Windows.Forms.Label();
-            this.txtTeacherPhone = new System.Windows.Forms.TextBox();
+            this.mtxtTeacherPhone = new System.Windows.Forms.MaskedTextBox();
             this.lblTeacherLoginl = new System.Windows.Forms.Label();
             this.txtTeacherLogin = new System.Windows.Forms.TextBox();
             this.lblTeacherPasswordl = new System.Windows.Forms.Label();
@@ -398,7 +398,7 @@
             this.pnlTeacherProfileCard.Controls.Add(this.lblTeacherEmaill);
             this.pnlTeacherProfileCard.Controls.Add(this.txtTeacherEmail);
             this.pnlTeacherProfileCard.Controls.Add(this.lblTeacherPhonel);
-            this.pnlTeacherProfileCard.Controls.Add(this.txtTeacherPhone);
+            this.pnlTeacherProfileCard.Controls.Add(this.mtxtTeacherPhone);
             this.pnlTeacherProfileCard.Controls.Add(this.lblTeacherLoginl);
             this.pnlTeacherProfileCard.Controls.Add(this.txtTeacherLogin);
             this.pnlTeacherProfileCard.Controls.Add(this.lblTeacherPasswordl);
@@ -407,7 +407,7 @@
             this.pnlTeacherProfileCard.Controls.Add(this.btnCancelTeacherProfile);
             this.pnlTeacherProfileCard.Location = new System.Drawing.Point(14, 14);
             this.pnlTeacherProfileCard.Name = "pnlTeacherProfileCard";
-            this.pnlTeacherProfileCard.Size = new System.Drawing.Size(500, 500);
+            this.pnlTeacherProfileCard.Size = new System.Drawing.Size(500, 520);
             this.pnlTeacherProfileCard.TabIndex = 0;
             // 
             // pnlTeacherAvatarContainer
@@ -457,6 +457,7 @@
             this.txtTeacherFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTeacherFullName.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtTeacherFullName.Location = new System.Drawing.Point(20, 128);
+            this.txtTeacherFullName.MaxLength = 100;
             this.txtTeacherFullName.Name = "txtTeacherFullName";
             this.txtTeacherFullName.Size = new System.Drawing.Size(340, 25);
             this.txtTeacherFullName.TabIndex = 3;
@@ -478,6 +479,7 @@
             this.txtTeacherGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTeacherGroup.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtTeacherGroup.Location = new System.Drawing.Point(20, 174);
+            this.txtTeacherGroup.MaxLength = 80;
             this.txtTeacherGroup.Name = "txtTeacherGroup";
             this.txtTeacherGroup.Size = new System.Drawing.Size(340, 25);
             this.txtTeacherGroup.TabIndex = 5;
@@ -499,6 +501,7 @@
             this.txtTeacherEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTeacherEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtTeacherEmail.Location = new System.Drawing.Point(20, 220);
+            this.txtTeacherEmail.MaxLength = 50;
             this.txtTeacherEmail.Name = "txtTeacherEmail";
             this.txtTeacherEmail.Size = new System.Drawing.Size(340, 25);
             this.txtTeacherEmail.TabIndex = 7;
@@ -514,15 +517,16 @@
             this.lblTeacherPhonel.TabIndex = 8;
             this.lblTeacherPhonel.Text = "Телефон";
             // 
-            // txtTeacherPhone
+            // mtxtTeacherPhone
             // 
-            this.txtTeacherPhone.BackColor = System.Drawing.Color.White;
-            this.txtTeacherPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTeacherPhone.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtTeacherPhone.Location = new System.Drawing.Point(20, 266);
-            this.txtTeacherPhone.Name = "txtTeacherPhone";
-            this.txtTeacherPhone.Size = new System.Drawing.Size(340, 25);
-            this.txtTeacherPhone.TabIndex = 9;
+            this.mtxtTeacherPhone.BackColor = System.Drawing.Color.White;
+            this.mtxtTeacherPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mtxtTeacherPhone.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.mtxtTeacherPhone.Location = new System.Drawing.Point(20, 266);
+            this.mtxtTeacherPhone.Mask = "+7 (999) 000-00-00";
+            this.mtxtTeacherPhone.Name = "mtxtTeacherPhone";
+            this.mtxtTeacherPhone.Size = new System.Drawing.Size(340, 25);
+            this.mtxtTeacherPhone.TabIndex = 9;
             // 
             // lblTeacherLoginl
             // 
@@ -1319,7 +1323,7 @@
         private System.Windows.Forms.PictureBox picTeacherAvatarProfile;
         private System.Windows.Forms.PictureBox picAvatar;
         private System.Windows.Forms.Label lblTeacherProfileTitle, lblTeacherFIOl, lblTeacherGroupl, lblTeacherEmaill, lblTeacherPhonel, lblTeacherLoginl, lblTeacherPasswordl;
-        private System.Windows.Forms.TextBox txtTeacherFullName, txtTeacherGroup, txtTeacherEmail, txtTeacherPhone, txtTeacherLogin, txtTeacherPassword;
+        private System.Windows.Forms.TextBox txtTeacherFullName, txtTeacherGroup, txtTeacherEmail, txtTeacherLogin, txtTeacherPassword;
         private System.Windows.Forms.Button btnSaveTeacherProfile, btnCancelTeacherProfile, btnNavProfile;
         private System.Windows.Forms.ComboBox comboBoxScheduleElectives;
         private System.Windows.Forms.Label lblSelectElective;
@@ -1348,5 +1352,6 @@
         private System.Windows.Forms.ComboBox comboBoxElectives;
         private System.Windows.Forms.DateTimePicker dtpLessonDate;
         private System.Windows.Forms.TextBox txtLessonTime;
+        private System.Windows.Forms.MaskedTextBox mtxtTeacherPhone;
     }
 }

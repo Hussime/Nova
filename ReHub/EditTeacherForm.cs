@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ReHub
@@ -22,7 +24,15 @@ namespace ReHub
             txtFullName.Text = selectedRow.Cells["ФИО"].Value?.ToString() ?? "";
             txtDepartment.Text = selectedRow.Cells["Кафедра"].Value?.ToString() ?? "";
             txtEmail.Text = selectedRow.Cells["Email"].Value?.ToString() ?? "";
-            txtPhone.Text = selectedRow.Cells["Телефон"].Value?.ToString() ?? "";
+
+            // Загружаем телефон в MaskedTextBox
+            string phone = selectedRow.Cells["Телефон"].Value?.ToString() ?? "";
+            if (!string.IsNullOrEmpty(phone))
+            {
+                // Форматируем телефон для маски
+                mtxtPhone.Text = phone;
+            }
+
             txtLogin.Text = selectedRow.Cells["Логин"].Value?.ToString() ?? "";
             txtPassword.Text = selectedRow.Cells["Пароль"].Value?.ToString() ?? "";
         }
@@ -36,6 +46,30 @@ namespace ReHub
                 MessageBox.Show("Заполните обязательные поля (ФИО, Логин, Пароль)", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            // Проверка Email
+            if (!string.IsNullOrEmpty(txtEmail.Text))
+            {
+                string email = txtEmail.Text.Trim();
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Введите корректный Email адрес", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            // Проверка телефона
+            if (!string.IsNullOrEmpty(mtxtPhone.Text))
+            {
+                string phone = mtxtPhone.Text.Trim();
+                if (phone.Contains('_') || phone.Length < 18)
+                {
+                    MessageBox.Show("Введите корректный номер телефона в формате +7 (999) 000-00-00", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             try
@@ -54,14 +88,14 @@ namespace ReHub
 
                     using (var command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@FullName", txtFullName.Text);
+                        command.Parameters.AddWithValue("@FullName", txtFullName.Text.Trim());
                         command.Parameters.AddWithValue("@Department",
-                            string.IsNullOrEmpty(txtDepartment.Text) ? DBNull.Value : (object)txtDepartment.Text);
+                            string.IsNullOrEmpty(txtDepartment.Text) ? DBNull.Value : (object)txtDepartment.Text.Trim());
                         command.Parameters.AddWithValue("@Email",
-                            string.IsNullOrEmpty(txtEmail.Text) ? DBNull.Value : (object)txtEmail.Text);
+                            string.IsNullOrEmpty(txtEmail.Text) ? DBNull.Value : (object)txtEmail.Text.Trim());
                         command.Parameters.AddWithValue("@Phone",
-                            string.IsNullOrEmpty(txtPhone.Text) ? DBNull.Value : (object)txtPhone.Text);
-                        command.Parameters.AddWithValue("@Login", txtLogin.Text);
+                            string.IsNullOrEmpty(mtxtPhone.Text) || mtxtPhone.Text.Contains('_') ? DBNull.Value : (object)mtxtPhone.Text.Trim());
+                        command.Parameters.AddWithValue("@Login", txtLogin.Text.Trim());
                         command.Parameters.AddWithValue("@Password", txtPassword.Text);
                         command.Parameters.AddWithValue("@TeacherId", teacherId);
 
@@ -81,6 +115,23 @@ namespace ReHub
             {
                 MessageBox.Show($"Ошибка редактирования преподавателя: {ex.Message}", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                return Regex.IsMatch(email.Trim(),
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch
+            {
+                return false;
             }
         }
 

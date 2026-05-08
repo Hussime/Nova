@@ -1,11 +1,4 @@
-﻿using System.Data.SqlClient;
-using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Windows.Forms;
-
-namespace ReHub
+﻿namespace ReHub
 {
     partial class StudentForm
     {
@@ -92,7 +85,7 @@ namespace ReHub
             this.lblEmaill = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.lblPhonel = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.mtxtPhone = new System.Windows.Forms.MaskedTextBox();
             this.lblLoginl = new System.Windows.Forms.Label();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.lblPasswordl = new System.Windows.Forms.Label();
@@ -879,7 +872,7 @@ namespace ReHub
             this.pnlProfileCard.Controls.Add(this.lblEmaill);
             this.pnlProfileCard.Controls.Add(this.txtEmail);
             this.pnlProfileCard.Controls.Add(this.lblPhonel);
-            this.pnlProfileCard.Controls.Add(this.txtPhone);
+            this.pnlProfileCard.Controls.Add(this.mtxtPhone);
             this.pnlProfileCard.Controls.Add(this.lblLoginl);
             this.pnlProfileCard.Controls.Add(this.txtLogin);
             this.pnlProfileCard.Controls.Add(this.lblPasswordl);
@@ -888,7 +881,7 @@ namespace ReHub
             this.pnlProfileCard.Controls.Add(this.btnCancelProfile);
             this.pnlProfileCard.Location = new System.Drawing.Point(14, 14);
             this.pnlProfileCard.Name = "pnlProfileCard";
-            this.pnlProfileCard.Size = new System.Drawing.Size(500, 480);
+            this.pnlProfileCard.Size = new System.Drawing.Size(500, 520);
             this.pnlProfileCard.TabIndex = 0;
             // 
             // pnlAvatarProfile
@@ -939,6 +932,7 @@ namespace ReHub
             this.txtFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFullName.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtFullName.Location = new System.Drawing.Point(20, 128);
+            this.txtFullName.MaxLength = 100;
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(340, 25);
             this.txtFullName.TabIndex = 3;
@@ -960,6 +954,7 @@ namespace ReHub
             this.txtGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroup.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtGroup.Location = new System.Drawing.Point(20, 174);
+            this.txtGroup.MaxLength = 80;
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(340, 25);
             this.txtGroup.TabIndex = 5;
@@ -981,6 +976,7 @@ namespace ReHub
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtEmail.Location = new System.Drawing.Point(20, 220);
+            this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(340, 25);
             this.txtEmail.TabIndex = 7;
@@ -996,15 +992,16 @@ namespace ReHub
             this.lblPhonel.TabIndex = 8;
             this.lblPhonel.Text = "Телефон";
             // 
-            // txtPhone
+            // mtxtPhone
             // 
-            this.txtPhone.BackColor = System.Drawing.Color.White;
-            this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPhone.Location = new System.Drawing.Point(20, 266);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(340, 25);
-            this.txtPhone.TabIndex = 9;
+            this.mtxtPhone.BackColor = System.Drawing.Color.White;
+            this.mtxtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mtxtPhone.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.mtxtPhone.Location = new System.Drawing.Point(20, 266);
+            this.mtxtPhone.Mask = "+7 (999) 000-00-00";
+            this.mtxtPhone.Name = "mtxtPhone";
+            this.mtxtPhone.Size = new System.Drawing.Size(340, 25);
+            this.mtxtPhone.TabIndex = 9;
             // 
             // lblLoginl
             // 
@@ -1141,7 +1138,8 @@ namespace ReHub
         private System.Windows.Forms.DataGridView dgvElectives, dgvMyApplications, dgvSchedule;
         private System.Windows.Forms.TextBox txtCourseName, txtCourseTeacher, txtMaxStudents, txtCourseDescription;
         private System.Windows.Forms.TextBox txtSelectedElective, txtSelectedTeacher, txtSelectedTime;
-        private System.Windows.Forms.TextBox txtFullName, txtGroup, txtEmail, txtPhone, txtLogin, txtPassword;
+        private System.Windows.Forms.TextBox txtFullName, txtGroup, txtEmail, txtLogin, txtPassword;
+        private System.Windows.Forms.MaskedTextBox mtxtPhone;
         private System.Windows.Forms.DateTimePicker dtpSelectedDate;
         private System.Windows.Forms.PictureBox picAvatar, picAvatarProfile;
     }

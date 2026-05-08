@@ -6,6 +6,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ReHub
@@ -219,7 +220,7 @@ namespace ReHub
                                 txtFullName.Text = reader["ФИО"]?.ToString() ?? "";
                                 txtGroup.Text = reader["Группа"]?.ToString() ?? "";
                                 txtEmail.Text = reader["Email"]?.ToString() ?? "";
-                                txtPhone.Text = reader["Телефон"]?.ToString() ?? "";
+                                mtxtPhone.Text = reader["Телефон"]?.ToString() ?? "";
                                 txtLogin.Text = reader["Логин"]?.ToString() ?? "";
                                 txtPassword.Text = reader["Пароль"]?.ToString() ?? "";
                             }
@@ -393,6 +394,30 @@ namespace ReHub
                 return;
             }
 
+            // Проверка Email
+            if (!string.IsNullOrEmpty(txtEmail.Text))
+            {
+                string email = txtEmail.Text.Trim();
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Введите корректный Email адрес", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            // Проверка телефона
+            if (!string.IsNullOrEmpty(mtxtPhone.Text))
+            {
+                string phone = mtxtPhone.Text.Trim();
+                if (phone.Contains('_') || phone.Length < 18)
+                {
+                    MessageBox.Show("Введите корректный номер телефона в формате +7 (999) 000-00-00", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             try
             {
                 using (var connection = DatabaseHelper.GetConnection())
@@ -400,11 +425,11 @@ namespace ReHub
                     connection.Open();
                     using (var cmd = new SqlCommand(@"UPDATE Студент SET ФИО = @FullName, Группа = @Group, Email = @Email, Телефон = @Phone, Логин = @Login, Пароль = @Password WHERE М_студента = @StudentId", connection))
                     {
-                        cmd.Parameters.AddWithValue("@FullName", txtFullName.Text);
-                        cmd.Parameters.AddWithValue("@Group", txtGroup.Text);
-                        cmd.Parameters.AddWithValue("@Email", string.IsNullOrEmpty(txtEmail.Text) ? DBNull.Value : (object)txtEmail.Text);
-                        cmd.Parameters.AddWithValue("@Phone", string.IsNullOrEmpty(txtPhone.Text) ? DBNull.Value : (object)txtPhone.Text);
-                        cmd.Parameters.AddWithValue("@Login", txtLogin.Text);
+                        cmd.Parameters.AddWithValue("@FullName", txtFullName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Group", txtGroup.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Email", string.IsNullOrEmpty(txtEmail.Text) ? DBNull.Value : (object)txtEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Phone", string.IsNullOrEmpty(mtxtPhone.Text) || mtxtPhone.Text.Contains('_') ? DBNull.Value : (object)mtxtPhone.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Login", txtLogin.Text.Trim());
                         cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
                         cmd.Parameters.AddWithValue("@StudentId", currentUser.Id);
                         cmd.ExecuteNonQuery();
@@ -416,6 +441,23 @@ namespace ReHub
                 lblCurrentUser.Text = $"{greeting}, {txtFullName.Text}!";
             }
             catch (Exception ex) { MessageBox.Show($"Ошибка сохранения: {ex.Message}"); }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                return Regex.IsMatch(email.Trim(),
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private void btnCancelProfile_Click(object sender, EventArgs e)

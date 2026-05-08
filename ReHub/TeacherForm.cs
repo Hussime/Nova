@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -18,7 +20,7 @@ namespace ReHub
         private User currentUser;
         private DataTable electivesData;
         private string avatarPath = "";
-        private bool _isScheduleLoading = true; // Флаг для предотвращения авто-срабатывания
+        private bool _isScheduleLoading = true;
 
         public TeacherForm(User user)
         {
@@ -34,9 +36,6 @@ namespace ReHub
             btnNotifBell.Click += (s, e) => ShowPanel("notifs");
             btnCloseForm.Click += (s, e) => Application.Exit();
             dgvMyElectives.SelectionChanged += dgvMyElectives_SelectionChanged;
-
-            // НЕ подписываем событие сразу, чтобы не срабатывало при загрузке
-            // comboBoxScheduleElectives.SelectedIndexChanged += ComboBoxScheduleElectives_SelectedIndexChanged;
 
             btnApprove.Click += btnApprove_Click_1;
             btnReject.Click += btnReject_Click_1;
@@ -67,7 +66,6 @@ namespace ReHub
             LoadTeacherAvatar();
             LoadTeacherProfile();
 
-            // Теперь можно подписать событие после загрузки всех данных
             comboBoxScheduleElectives.SelectedIndexChanged += ComboBoxScheduleElectives_SelectedIndexChanged;
             _isScheduleLoading = false;
 
@@ -98,7 +96,7 @@ namespace ReHub
 
         private void ComboBoxScheduleElectives_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isScheduleLoading) return; // Пропускаем при загрузке
+            if (_isScheduleLoading) return;
 
             if (comboBoxScheduleElectives.SelectedItem != null)
             {
@@ -109,8 +107,7 @@ namespace ReHub
                 string time = row["Время_занятия"] != DBNull.Value ?
                     row["Время_занятия"].ToString() : "Не установлено";
 
-                MessageBox.Show($"📅 Расписание для: {name}\n📆 Дата: {date}\n⏰ Время: {time}",
-                    "Информация о расписании", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MessageBox удален - не нужен при каждом выборе
             }
         }
 
@@ -360,7 +357,6 @@ namespace ReHub
                 using (var connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
-                    // ДОБАВЛЕНЫ Дата_занятия и Время_занятия
                     string query = @"SELECT М_факультатива, Название, Дата_занятия, Время_занятия
                            FROM Факультатив 
                            WHERE М_преподавателя = @TeacherId
@@ -374,12 +370,10 @@ namespace ReHub
                             DataTable dt = new DataTable();
                             adapter.Fill(dt);
 
-                            // Отписываем событие перед установкой данных
                             comboBoxScheduleElectives.SelectedIndexChanged -= ComboBoxScheduleElectives_SelectedIndexChanged;
                             comboBoxScheduleElectives.DataSource = dt;
                             comboBoxScheduleElectives.DisplayMember = "Название";
                             comboBoxScheduleElectives.ValueMember = "М_факультатива";
-                            // Подписываем событие после установки данных
                             comboBoxScheduleElectives.SelectedIndexChanged += ComboBoxScheduleElectives_SelectedIndexChanged;
                         }
                     }
@@ -500,14 +494,12 @@ namespace ReHub
                         command.ExecuteNonQuery();
                     }
 
-                    // Создаем уведомление с полным текстом
                     string notifText = $"📅 Расписание для факультатива «{electiveName}» установлено на {dtpLessonDate.Value:dd.MM.yyyy} в {txtLessonTime.Text}";
                     CreateTeacherNotification(currentUser.Id, notifText, "success");
                 }
 
                 MessageBox.Show($"Расписание для факультатива '{electiveName}' установлено!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Перезагружаем данные и уведомления
                 LoadMyElectives();
                 LoadNotificationsTeacher();
             }
@@ -594,11 +586,9 @@ namespace ReHub
                 {
                     var row = dgvMyElectives.CurrentRow;
 
-                    // Получаем ID факультатива (из скрытой колонки или из текста)
                     int electiveId = -1;
                     string electiveName = row.Cells["Название"].Value?.ToString();
 
-                    // Ищем соответствие в comboBoxScheduleElectives
                     foreach (DataRowView item in comboBoxScheduleElectives.Items)
                     {
                         if (item["Название"].ToString() == electiveName)
@@ -609,13 +599,11 @@ namespace ReHub
                         }
                     }
 
-                    // Подставляем дату если есть
                     if (row.Cells["Дата_занятия"].Value != null && row.Cells["Дата_занятия"].Value != DBNull.Value)
                     {
                         dtpLessonDate.Value = Convert.ToDateTime(row.Cells["Дата_занятия"].Value);
                     }
 
-                    // Подставляем время если есть
                     if (row.Cells["Время_занятия"].Value != null)
                     {
                         txtLessonTime.Text = row.Cells["Время_занятия"].Value.ToString();
@@ -650,7 +638,6 @@ namespace ReHub
 
                 int currentRow = 1;
 
-                // ШАПКА ОРГАНИЗАЦИИ
                 worksheet.Cells[currentRow, 1] = "МКОУ \"Волчихинская СШ№2\"";
                 Excel.Range orgRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, 6]];
                 orgRange.Merge();
@@ -659,7 +646,6 @@ namespace ReHub
                 orgRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                 currentRow += 2;
 
-                // ЗАГОЛОВОК
                 worksheet.Cells[currentRow, 1] = "ДАННЫЕ ДЛЯ ДОСТУПА УЧЕНИКОВ";
                 Excel.Range titleRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, 6]];
                 titleRange.Merge();
@@ -668,7 +654,6 @@ namespace ReHub
                 titleRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                 currentRow += 2;
 
-                // ИНФОРМАЦИЯ (ИСПРАВЛЕНИЕ 5 И 6 СТРОК)
                 worksheet.Cells[currentRow, 1] = "Преподаватель:";
                 worksheet.Cells[currentRow, 1].Font.Bold = true;
                 worksheet.Cells[currentRow, 2] = currentUser.FullName;
@@ -679,7 +664,6 @@ namespace ReHub
                 worksheet.Cells[currentRow, 2] = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
                 currentRow += 2;
 
-                // ЗАГОЛОВОК ТАБЛИЦЫ (СЕРЫЙ ФОН ПО ВСЕЙ ШИРИНЕ)
                 worksheet.Cells[currentRow, 1] = "СПИСОК УЧЕНИКОВ";
                 Excel.Range studentsTitleRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, 6]];
                 studentsTitleRange.Merge();
@@ -689,7 +673,6 @@ namespace ReHub
                 studentsTitleRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                 currentRow++;
 
-                // ЗАГОЛОВКИ СТОЛБЦОВ
                 string[] headers = { "№", "ФИО ученика", "Email", "Телефон", "Логин", "Пароль" };
                 for (int i = 0; i < headers.Length; i++)
                 {
@@ -699,7 +682,6 @@ namespace ReHub
                     headerCell.Interior.Color = ColorTranslator.ToOle(Color.LightGray);
                     headerCell.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
-                    // Ширина столбцов
                     if (i == 0) worksheet.Columns[i + 1].ColumnWidth = 5;
                     else if (i == 1) worksheet.Columns[i + 1].ColumnWidth = 30;
                     else if (i == 2) worksheet.Columns[i + 1].ColumnWidth = 25;
@@ -709,7 +691,6 @@ namespace ReHub
                 }
                 currentRow++;
 
-                // ДАННЫЕ УЧЕНИКОВ
                 for (int i = 0; i < students.Rows.Count; i++)
                 {
                     worksheet.Cells[currentRow, 1] = i + 1;
@@ -719,7 +700,6 @@ namespace ReHub
                     worksheet.Cells[currentRow, 5] = SafeString(students.Rows[i]["Логин"]);
                     worksheet.Cells[currentRow, 6] = SafeString(students.Rows[i]["Пароль"]);
 
-                    // Границы
                     for (int j = 1; j <= headers.Length; j++)
                     {
                         Excel.Range dataCell = worksheet.Cells[currentRow, j];
@@ -728,7 +708,7 @@ namespace ReHub
                     currentRow++;
                 }
 
-                // ИТОГОВАЯ СТРОКА (СЕРЫЙ ФОН ПО ВСЕЙ ШИРИНЕ)
+                currentRow += 2;
                 worksheet.Cells[currentRow, 1] = $"Всего учеников: {students.Rows.Count}";
                 Excel.Range totalRange = worksheet.Range[worksheet.Cells[currentRow, 1], worksheet.Cells[currentRow, 6]];
                 totalRange.Merge();
@@ -739,7 +719,6 @@ namespace ReHub
                 worksheet.Cells[currentRow, 1] = "Подпись: _________________________";
                 worksheet.Cells[currentRow, 1].Font.Bold = true;
 
-                // Автоподбор ширины
                 worksheet.Columns.AutoFit();
 
                 worksheet.Activate();
@@ -884,44 +863,123 @@ namespace ReHub
             card.Padding = new Padding(12);
             card.Cursor = Cursors.Hand;
             card.Tag = id;
-            if (!isRead) card.Paint += (s, e) => e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(24, 95, 165)), 0, 0, 4, card.Height);
+            card.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
-            Label icon = new Label(); icon.AutoSize = false; icon.Size = new Size(32, 32); icon.Location = new Point(16, 19); icon.Font = new Font("Segoe UI", 16F);
-            switch (type.ToLower()) { case "success": icon.Text = "✓"; icon.ForeColor = Color.FromArgb(59, 109, 17); break; case "warning": icon.Text = "⚠"; icon.ForeColor = Color.FromArgb(217, 119, 6); break; case "error": icon.Text = "✕"; icon.ForeColor = Color.FromArgb(163, 45, 45); break; default: icon.Text = "ℹ"; icon.ForeColor = Color.FromArgb(24, 95, 165); break; }
+            if (!isRead)
+            {
+                card.Paint += (s, e) =>
+                {
+                    e.Graphics.FillRectangle(
+                        new SolidBrush(Color.FromArgb(24, 95, 165)),
+                        0, 0, 4, card.Height);
+                };
+            }
 
-            Label lblText = new Label(); lblText.Text = text; lblText.Font = new Font("Segoe UI", 10F); lblText.ForeColor = isRead ? Color.FromArgb(100, 100, 100) : Color.FromArgb(30, 30, 30); lblText.AutoSize = false; lblText.Size = new Size(card.Width - 80, 20); lblText.Location = new Point(60, 15);
-            Label lblDate = new Label(); lblDate.Text = date.ToString("dd.MM HH:mm"); lblDate.Font = new Font("Segoe UI", 8F); lblDate.ForeColor = Color.FromArgb(150, 150, 150); lblDate.AutoSize = true; lblDate.Location = new Point(60, 38);
+            Label icon = new Label();
+            icon.AutoSize = false;
+            icon.Size = new Size(32, 32);
+            icon.Location = new Point(16, 19);
+            icon.Font = new Font("Segoe UI", 16F);
+
+            switch (type.ToLower())
+            {
+                case "success": icon.Text = "✓"; icon.ForeColor = Color.FromArgb(59, 109, 17); break;
+                case "warning": icon.Text = "⚠"; icon.ForeColor = Color.FromArgb(217, 119, 6); break;
+                case "error": icon.Text = "✕"; icon.ForeColor = Color.FromArgb(163, 45, 45); break;
+                default: icon.Text = "ℹ"; icon.ForeColor = Color.FromArgb(24, 95, 165); break;
+            }
+
+            Label lblText = new Label();
+            lblText.Text = text;
+            lblText.Font = new Font("Segoe UI", 10F);
+            lblText.ForeColor = isRead ? Color.FromArgb(100, 100, 100) : Color.FromArgb(30, 30, 30);
+            lblText.AutoSize = false;
+            lblText.MaximumSize = new Size(850, 0);
+            lblText.Size = new Size(850, 40);
+            lblText.Location = new Point(60, 10);
+            lblText.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+
+            Label lblDate = new Label();
+            lblDate.Text = date.ToString("dd.MM HH:mm");
+            lblDate.Font = new Font("Segoe UI", 8F);
+            lblDate.ForeColor = Color.FromArgb(150, 150, 150);
+            lblDate.AutoSize = true;
+            lblDate.Location = new Point(60, 38);
 
             card.Controls.AddRange(new Control[] { icon, lblText, lblDate });
+
             int capturedId = id;
-            card.Click += (s, e) => MarkTeacherNotifRead(capturedId, card);
-            icon.Click += (s, e) => MarkTeacherNotifRead(capturedId, card);
-            lblText.Click += (s, e) => MarkTeacherNotifRead(capturedId, card);
-            lblDate.Click += (s, e) => MarkTeacherNotifRead(capturedId, card);
+            card.Click += (s, e) => DeleteTeacherNotification(capturedId, card);
+            icon.Click += (s, e) => DeleteTeacherNotification(capturedId, card);
+            lblText.Click += (s, e) => DeleteTeacherNotification(capturedId, card);
+            lblDate.Click += (s, e) => DeleteTeacherNotification(capturedId, card);
+
             return card;
         }
 
-        private void MarkTeacherNotifRead(int id, Panel card)
+        private void DeleteTeacherNotification(int id, Panel card)
         {
+            DialogResult result = MessageBox.Show(
+                "Удалить это уведомление?",
+                "Подтверждение",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)
+                return;
+
             try
             {
-                using (var connection = DatabaseHelper.GetConnection()) { connection.Open(); using (var cmd = new SqlCommand("UPDATE Уведомление SET Прочитано = 1 WHERE Id = @Id", connection)) { cmd.Parameters.AddWithValue("@Id", id); cmd.ExecuteNonQuery(); } }
-                card.Invalidate();
+                using (var conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    using (var cmd = new SqlCommand(
+                        "DELETE FROM Уведомление WHERE Id = @Id", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
                 LoadNotificationsTeacher();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnMarkAllTeacher_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Отметить все уведомления как прочитанные?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            DialogResult result = MessageBox.Show(
+                "Отметить все уведомления как прочитанные?",
+                "Подтверждение",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)
+                return;
+
             try
             {
-                using (var connection = DatabaseHelper.GetConnection()) { connection.Open(); using (var cmd = new SqlCommand("UPDATE Уведомление SET Прочитано = 1 WHERE М_преподавателя = @TeacherId AND Прочитано = 0", connection)) { cmd.Parameters.AddWithValue("@TeacherId", currentUser.Id); cmd.ExecuteNonQuery(); } }
+                using (var conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    using (var cmd = new SqlCommand(
+                        "UPDATE Уведомление SET Прочитано = 1 WHERE М_преподавателя = @TeacherId AND Прочитано = 0", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@TeacherId", currentUser.Id);
+                        int updated = cmd.ExecuteNonQuery();
+                    }
+                }
                 LoadNotificationsTeacher();
-                MessageBox.Show("Все уведомления отмечены как прочитанные", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Все уведомления отмечены как прочитанные", "Информация",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex) { MessageBox.Show($"Ошибка: {ex.Message}"); }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
+            }
         }
 
         private void UpdateTeacherBadge(int count)
@@ -1049,7 +1107,7 @@ namespace ReHub
                                 txtTeacherFullName.Text = reader["ФИО"]?.ToString() ?? "";
                                 txtTeacherGroup.Text = reader["Кафедра"]?.ToString() ?? "";
                                 txtTeacherEmail.Text = reader["Email"]?.ToString() ?? "";
-                                txtTeacherPhone.Text = reader["Телефон"]?.ToString() ?? "";
+                                mtxtTeacherPhone.Text = reader["Телефон"]?.ToString() ?? "";
                                 txtTeacherLogin.Text = reader["Логин"]?.ToString() ?? "";
                                 txtTeacherPassword.Text = reader["Пароль"]?.ToString() ?? "";
                             }
@@ -1065,6 +1123,30 @@ namespace ReHub
             if (string.IsNullOrEmpty(txtTeacherFullName.Text) || string.IsNullOrEmpty(txtTeacherLogin.Text) || string.IsNullOrEmpty(txtTeacherPassword.Text))
             { MessageBox.Show("Заполните обязательные поля (ФИО, Логин, Пароль)"); return; }
 
+            // Проверка Email
+            if (!string.IsNullOrEmpty(txtTeacherEmail.Text))
+            {
+                string email = txtTeacherEmail.Text.Trim();
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Введите корректный Email адрес", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            // Проверка телефона
+            if (!string.IsNullOrEmpty(mtxtTeacherPhone.Text))
+            {
+                string phone = mtxtTeacherPhone.Text.Trim();
+                if (phone.Contains('_') || phone.Length < 18)
+                {
+                    MessageBox.Show("Введите корректный номер телефона в формате +7 (999) 000-00-00", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             try
             {
                 using (var connection = DatabaseHelper.GetConnection())
@@ -1072,11 +1154,11 @@ namespace ReHub
                     connection.Open();
                     using (var cmd = new SqlCommand(@"UPDATE Преподаватель SET ФИО = @FullName, Кафедра = @Department, Email = @Email, Телефон = @Phone, Логин = @Login, Пароль = @Password WHERE М_преподавателя = @TeacherId", connection))
                     {
-                        cmd.Parameters.AddWithValue("@FullName", txtTeacherFullName.Text);
-                        cmd.Parameters.AddWithValue("@Department", txtTeacherGroup.Text);
-                        cmd.Parameters.AddWithValue("@Email", string.IsNullOrEmpty(txtTeacherEmail.Text) ? DBNull.Value : (object)txtTeacherEmail.Text);
-                        cmd.Parameters.AddWithValue("@Phone", string.IsNullOrEmpty(txtTeacherPhone.Text) ? DBNull.Value : (object)txtTeacherPhone.Text);
-                        cmd.Parameters.AddWithValue("@Login", txtTeacherLogin.Text);
+                        cmd.Parameters.AddWithValue("@FullName", txtTeacherFullName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Department", txtTeacherGroup.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Email", string.IsNullOrEmpty(txtTeacherEmail.Text) ? DBNull.Value : (object)txtTeacherEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Phone", string.IsNullOrEmpty(mtxtTeacherPhone.Text) || mtxtTeacherPhone.Text.Contains('_') ? DBNull.Value : (object)mtxtTeacherPhone.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Login", txtTeacherLogin.Text.Trim());
                         cmd.Parameters.AddWithValue("@Password", txtTeacherPassword.Text);
                         cmd.Parameters.AddWithValue("@TeacherId", currentUser.Id);
                         cmd.ExecuteNonQuery();
@@ -1088,6 +1170,23 @@ namespace ReHub
                 lblCurrentUser.Text = $"{greeting}, {txtTeacherFullName.Text}!";
             }
             catch (Exception ex) { MessageBox.Show($"Ошибка сохранения: {ex.Message}"); }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                return Regex.IsMatch(email.Trim(),
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

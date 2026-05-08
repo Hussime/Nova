@@ -19,19 +19,13 @@ namespace ReHub
         public AdminForm(User user)
         {
             InitializeComponent();
-            // === ОБРАБОТЧИКИ НАВИГАЦИИ ===
+
+            // === ОБРАБОТЧИКИ НАВИГАЦИИ (только боковое меню) ===
             this.btnNavAnalytics.Click += (s, e) => ShowPanel("analytics");
             this.btnNavElectives.Click += (s, e) => ShowPanel("electives");
             this.btnNavTeachers.Click += (s, e) => ShowPanel("teachers");
             this.btnNavStudents.Click += (s, e) => ShowPanel("students");
             this.btnNavSettings.Click += (s, e) => ShowPanel("settings");
-
-            // === ОБРАБОТЧИКИ ТАБОВ ===
-            this.btnTabElectives.Click += (s, e) => ShowPanel("electives");
-            this.btnTabTeachers.Click += (s, e) => ShowPanel("teachers");
-            this.btnTabStudents.Click += (s, e) => ShowPanel("students");
-
-            
 
             currentUser = user;
             this.Text = $"НОВА - Администратор: {user.FullName}";
@@ -39,9 +33,8 @@ namespace ReHub
             this.dgvElectives.SelectionChanged += new EventHandler(this.dgvElectives_SelectionChanged);
             string greeting = GetTimeBasedGreeting();
             this.lblCurrentUser.Text = $"{greeting}, Администратор!";
-
+            ShowPanel("analytics");
         }
-        
 
         private string GetTimeBasedGreeting()
         {
@@ -112,10 +105,7 @@ namespace ReHub
                 MessageBox.Show($"Ошибка загрузки преподавателей: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnNavAnalytics_Click(object sender, EventArgs e)
-        {
-            ShowPanel("analytics");
-        }
+
         private void LoadStudents()
         {
             try
@@ -174,7 +164,7 @@ namespace ReHub
             }
         }
 
-        // ==================== АНАЛИТИКА (РЕАЛЬНЫЕ ДАННЫЕ) ====================
+        // ==================== АНАЛИТИКА ====================
         public void LoadAnalyticsData()
         {
             try
@@ -243,7 +233,6 @@ namespace ReHub
                     }
 
                     // === ГРАФИКИ ===
-                    // Столбчатая диаграмма
                     Chart chartBar = new Chart
                     {
                         Location = new Point(14, 100),
@@ -273,7 +262,6 @@ namespace ReHub
                     }
                     this.pnlAnalytics.Controls.Add(chartBar);
 
-                    // Круговая диаграмма
                     Chart chartPie = new Chart
                     {
                         Location = new Point(574, 100),
@@ -533,7 +521,7 @@ namespace ReHub
             LoadAllData();
         }
 
-        // ==================== ЭКСПОРТ В EXCEL (ФАКУЛЬТАТИВЫ) ====================
+        // ==================== ЭКСПОРТ В EXCEL ====================
         private void btnGenerateElectivesReport_Click_1(object sender, EventArgs e)
         {
             Excel.Application excelApp = null;
@@ -935,39 +923,33 @@ namespace ReHub
             pnlStudents.Visible = false;
             pnlAnalytics.Visible = false;
 
-            btnTabElectives.ForeColor = Color.FromArgb(100, 100, 100);
-            btnTabTeachers.ForeColor = Color.FromArgb(100, 100, 100);
-            btnTabStudents.ForeColor = Color.FromArgb(100, 100, 100);
-
             btnNavElectives.BackColor = Color.White; btnNavElectives.ForeColor = Color.FromArgb(80, 80, 80);
             btnNavTeachers.BackColor = Color.White; btnNavTeachers.ForeColor = Color.FromArgb(80, 80, 80);
             btnNavStudents.BackColor = Color.White; btnNavStudents.ForeColor = Color.FromArgb(80, 80, 80);
+            btnNavAnalytics.BackColor = Color.White; btnNavAnalytics.ForeColor = Color.FromArgb(80, 80, 80);
 
             switch (name)
             {
-                case "electives":
-                    pnlElectives.Visible = true; pnlElectives.BringToFront();
-                    btnTabElectives.ForeColor = Color.FromArgb(24, 95, 165);
-                    btnNavElectives.BackColor = Color.FromArgb(230, 241, 251);
-                    btnNavElectives.ForeColor = Color.FromArgb(24, 95, 165);
-                    break;
-                case "teachers":
-                    pnlTeachers.Visible = true; pnlTeachers.BringToFront();
-                    btnTabTeachers.ForeColor = Color.FromArgb(24, 95, 165);
-                    btnNavTeachers.BackColor = Color.FromArgb(230, 241, 251);
-                    btnNavTeachers.ForeColor = Color.FromArgb(24, 95, 165);
-                    break;
-                case "students":
-                    pnlStudents.Visible = true; pnlStudents.BringToFront();
-                    btnTabStudents.ForeColor = Color.FromArgb(24, 95, 165);
-                    btnNavStudents.BackColor = Color.FromArgb(230, 241, 251);
-                    btnNavStudents.ForeColor = Color.FromArgb(24, 95, 165);
-                    break;
                 case "analytics":
                     pnlAnalytics.Visible = true; pnlAnalytics.BringToFront();
                     btnNavAnalytics.BackColor = Color.FromArgb(230, 241, 251);
                     btnNavAnalytics.ForeColor = Color.FromArgb(24, 95, 165);
                     LoadAnalyticsData();
+                    break;
+                case "electives":
+                    pnlElectives.Visible = true; pnlElectives.BringToFront();
+                    btnNavElectives.BackColor = Color.FromArgb(230, 241, 251);
+                    btnNavElectives.ForeColor = Color.FromArgb(24, 95, 165);
+                    break;
+                case "teachers":
+                    pnlTeachers.Visible = true; pnlTeachers.BringToFront();
+                    btnNavTeachers.BackColor = Color.FromArgb(230, 241, 251);
+                    btnNavTeachers.ForeColor = Color.FromArgb(24, 95, 165);
+                    break;
+                case "students":
+                    pnlStudents.Visible = true; pnlStudents.BringToFront();
+                    btnNavStudents.BackColor = Color.FromArgb(230, 241, 251);
+                    btnNavStudents.ForeColor = Color.FromArgb(24, 95, 165);
                     break;
                 case "settings":
                     new SettingsForm(currentUser).ShowDialog();

@@ -26,7 +26,7 @@
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.lblPhone = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.mtxtPhone = new System.Windows.Forms.MaskedTextBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -91,7 +91,7 @@
             this.pnlContent.Controls.Add(this.lblEmail);
             this.pnlContent.Controls.Add(this.txtEmail);
             this.pnlContent.Controls.Add(this.lblPhone);
-            this.pnlContent.Controls.Add(this.txtPhone);
+            this.pnlContent.Controls.Add(this.mtxtPhone);
             this.pnlContent.Controls.Add(this.lblLogin);
             this.pnlContent.Controls.Add(this.txtLogin);
             this.pnlContent.Controls.Add(this.lblPassword);
@@ -121,6 +121,7 @@
             this.txtFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFullName.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtFullName.Location = new System.Drawing.Point(25, 26);
+            this.txtFullName.MaxLength = 100;
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(410, 25);
             this.txtFullName.TabIndex = 1;
@@ -142,6 +143,7 @@
             this.txtDepartment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDepartment.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtDepartment.Location = new System.Drawing.Point(25, 82);
+            this.txtDepartment.MaxLength = 80;
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(410, 25);
             this.txtDepartment.TabIndex = 3;
@@ -163,6 +165,7 @@
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtEmail.Location = new System.Drawing.Point(25, 138);
+            this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(410, 25);
             this.txtEmail.TabIndex = 5;
@@ -178,15 +181,16 @@
             this.lblPhone.TabIndex = 6;
             this.lblPhone.Text = "Телефон";
             // 
-            // txtPhone
+            // mtxtPhone
             // 
-            this.txtPhone.BackColor = System.Drawing.Color.White;
-            this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPhone.Location = new System.Drawing.Point(25, 194);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(410, 25);
-            this.txtPhone.TabIndex = 7;
+            this.mtxtPhone.BackColor = System.Drawing.Color.White;
+            this.mtxtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mtxtPhone.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.mtxtPhone.Location = new System.Drawing.Point(25, 194);
+            this.mtxtPhone.Mask = "+7 (999) 000-00-00";
+            this.mtxtPhone.Name = "mtxtPhone";
+            this.mtxtPhone.Size = new System.Drawing.Size(410, 25);
+            this.mtxtPhone.TabIndex = 7;
             // 
             // lblLogin
             // 
@@ -298,7 +302,6 @@
 
         #endregion
 
-        // ==================== CONTROLS ====================
         private System.Windows.Forms.Panel pnlTitleBar;
         private System.Windows.Forms.Label lblFormTitle;
         private System.Windows.Forms.Button btnClose;
@@ -310,7 +313,7 @@
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label lblPhone;
-        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.MaskedTextBox mtxtPhone;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.TextBox txtLogin;
         private System.Windows.Forms.Label lblPassword;
